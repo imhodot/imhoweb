@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!--Meta Informations-->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!--Site Title-->
+	<title>IMHOweb - Domain name, web hosting, and email </title>
+	
+	<!--Favicons-->	
+	<link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='assetx/favicon/apple-touch-icon.png') }}">
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='assetx/favicon/favicon-32x32.png') }}" sizes="32x32">
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='assetx/favicon/favicon-16x16.png') }}" sizes="16x16">
+	<link rel="manifest" href="{{ url_for('static', filename='assetx/favicon/manifest.json') }}">
+	<link rel="mask-icon" href="{{ url_for('static', filename='assetx/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='assetx/favicon/favicon.ico') }}">
+	<meta name="msapplication-config" content="{{ url_for('static', filename='assetx/favicon/browserconfig.xml') }}">
+	<meta name="theme-color" content="#ffffff">
+	
+	<!--Style Assets-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendors/fontawesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendors/owl/owl.carousel.css') }}">
+
+	<!--Theme Style-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assetx/css/styles.css') }}">
+	
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+		
+</head>
+<body>
+<div id="page" class="site row">
+
+<h1 class="sr-only">IMHOweb - Best Hosting, by <a href="http://initas.net"><em>Initas</em></a>.</h1>
+
+<header id="header" class="site-header">
+	<nav class="navbar navbar-defatult navbar-fixed-top fluid-navbar navbar-style1">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand"><img src="{{ url_for('static', filename='assetx/icons/logo-white.png') }}" alt="" class="logo-img"></a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+					<span class="sr-only">Nav Opener</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="main-nav">
+				<ul class="nav navbar-nav navbar-right cart-nav">
+					<li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 2</a></li>
+                    <li><a href="/login">Login</a></li>
+				</ul>
+				<ul class="navbar-nav nav navbar-right">
+					<li class="active"><a href="index.html">Home</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>			
+		</div>
+	</nav>
+	
+</header>
+
+<main id="contents" class="site-contnts">
+	
+	<!--Slider-->
+	<div class="home-slider">
+		<div class="item" data-slide="{{ url_for('static', filename='assetx/images/slide1.jpg') }}">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-11 col-md-8 col-lg-7">
+						<h2 class="slide-title">Which <strong>Hosting Service</strong> is <strong>Right</strong> for You?</h2>
+						<p>Hundreds of websites depend on IMHOweb's premium web hosting and cloud services.</p>
+						<a href="#pricing-tabs-section" class="btn btn-primary">view plans</a>
+						<a href="#" class="link">Need Help?</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item" data-slide="{{ url_for('static', filename='assetx/images/slide2.jpg') }}">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-7 col-lg-6">
+						<h2 class="slide-title slide-title2"><strong>Unlimited Hosting</strong></h2>
+						<h3><strong>Hundreds of Websites</strong> depend on Our <strong>Web Hosting</strong> &amp; and <strong>Cloud Services</strong>.</h3>
+						<ul class="nav slide-flist">
+							<li>Host up to 100 websites</li>
+							<li>SSD database storage</li>
+							<li>1TB monthly bandwidth</li>
+							<li>20 GB SSD storage</li>
+							<li>1000 email addresses</li>
+							<li>24/7/365 live support</li>
+						</ul>
+						<a href="#" class="btn btn-primary">learn more</a>
+						<a href="#" class="link">view plans</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--Find Domain-->
+	<form class="row domain-search bg-pblue" action="#">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<h2 class="form-title">Find Your <strong>Dream Domain</strong></h2>
+					<p>Search for your dream domain now</p>
+				</div>
+				<div class="col-md-9">
+					<div class="input-group">
+						<input type="search" class="form-control">
+						<span class="input-group-addon"><input type="submit" value="Search" class="btn btn-primary"></span>
+					</div>
+					<p>.com <strong>$8.95</strong>.net <strong>$7.95</strong>.org <strong>$9.95</strong>.africa <strong>$0.99</strong>.ng <strong>$0.99</strong>.ci <strong>$0.99</strong></p>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<!--Hosting Services - Tab-->
+	<section class="row hosting-services-tabs-section">
+		<div class="container">
+			<div class="row section-title text-center">
+				<h2>Hosting Services</h2>
+				<p>It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+			</div>
+			<ul class="nav nav-tabs nav-justified hstab" role="tablist">
+				<li role="presentation" class="active"><a href="#hst-1" aria-controls="hst-1" role="tab" data-toggle="tab">WordPress Hosting</a></li>
+				<li role="presentation"><a href="#hst-2" aria-controls="hst-2" role="tab" data-toggle="tab">Shared Hosting</a></li>
+				<li role="presentation"><a href="#hst-3" aria-controls="hst-3" role="tab" data-toggle="tab">VPS Hosting</a></li>
+				<li role="presentation"><a href="#hst-4" aria-controls="hst-4" role="tab" data-toggle="tab">Dedicated Hosting</a></li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content hst-contents">
+				<div role="tabpanel" class="tab-pane active" id="hst-1">
+					<div class="row">
+						<div class="col-md-7">
+							<h3 class="au-title">Awesome Wordpress <strong>Hosting Services</strong> from IMHOweb <strong>Fast. Reliable</strong>. and <strong>Easy to Use</strong></h3>
+							<p>Managed WordPress hosting is all about providing our optimized WordPress hosting on any kind of server, with a variety of price points and packages for hobbyists all the way up to enterprises. Super-Fast, Secure and Reliable WordPress Hosting is now available, at affordable prices.</p>
+							<a href="#" class="more-link">More about Wordpress Hosting <i class="fa fa-angle-double-right"></i></a>
+							<div class="media service-quote">
+								<div class="media-left"><a href="#" class="media-object"><img src="{{ url_for('static', filename='assetx/images/service-quote.png') }}" alt="IMHOweb Client image" class="img-circle"></a></div>
+								<div class="media-body">
+									<p><em>Love the support from IMHOweb team! WordPress hosting boosted my theme business.</em></p>
+									<h4>Jane Sani</h4>
+									<h5>Themeworks</h5>
+								</div>
+								<div class="media-right"><span class="media-object"><i class="fa fa-quote-right fa-4x"></i></span></div>
+							</div>
+						</div>
+						<div class="col-md-5 col-plan">
+							<div class="hst-plan row">
+								<ul class="plan-list nav">
+									<li><i class="fa fa-bolt"></i><strong>Fast &amp; Simple</strong> WordPress Hosting</li>
+									<li><i class="fa fa-mouse-pointer"></i><strong>1-Click Staging</strong> Environment</li>
+									<li><i class="fa fa-gear"></i>All-in-One Control Panel</li>
+									<li><i class="fa fa-tachometer"></i>Host up to <strong>100 Websites</strong></li>
+									<li><i class="fa fa-gear"></i><strong>1TB Monthly</strong> Bandwidth</li>
+									<li><i class="fa fa-gear"></i><strong>20 GB SSD</strong> Storage</li>
+									<li><i class="fa fa-life-bouy"></i>24/7/365 <strong>Live Support</strong></li>
+								</ul>
+								<div class="media hst-plan-price">
+									<div class="media-body">
+										Price starting from <span class="price"><sup>$</sup>20<sub>/month</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="hst-2">
+					<div class="row">
+						<div class="col-md-7">
+							<h3>Awesome Shared <strong>Hosting Services</strong> from IMHOweb <strong>Fast. Reliable</strong>. and <strong>Easy to Use</strong></h3>
+							<p>Shared hosting is always a perfect solution for your first website building or small to medium usage online platforms. It is also a good option when you are going to kickstart your website in a beta phase to investigate the actual traffic </p>
+							<a href="#" class="more-link">More about Wordpress Hosting <i class="fa fa-angle-double-right"></i></a>
+							<div class="media service-quote">
+								<div class="media-left"><a href="#" class="media-object"><img src="assetx/images/service-quote.png" class="img-circle"></a></div>
+								<div class="media-body">
+									<p><em>Love the support from IMHOweb team! WordPress hosting boosted my theme business.</em></p>
+									<h4>Didi Oke</h4>
+									<h5>Freelance Artist</h5>
+								</div>
+								<div class="media-right"><span class="media-object"><i class="fa fa-quote-right fa-4x"></i></span></div>
+							</div>
+						</div>
+						<div class="col-md-5 col-plan">
+							<div class="hst-plan row">
+								<ul class="plan-list nav">
+									<li><i class="fa fa-bolt"></i><strong>Fast &amp; Simple</strong> WordPress Hosting</li>
+									<li><i class="fa fa-mouse-pointer"></i><strong>1-Click Staging</strong> Environment</li>
+									<li><i class="fa fa-gear"></i>All-in-One Control Panel</li>
+									<li><i class="fa fa-tachometer"></i>Host up to <strong>100 Websites</strong></li>
+									<li><i class="fa fa-gear"></i><strong>1TB Monthly</strong> Bandwidth</li>
+									<li><i class="fa fa-gear"></i><strong>20 GB SSD</strong> Storage</li>
+									<li><i class="fa fa-life-bouy"></i>24/7/365 <strong>Live Support</strong></li>
+								</ul>
+								<div class="media hst-plan-price">
+									<div class="media-body">
+										Price starting from <span class="price"><sup>$</sup>20<sub>/month</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="hst-3">
+					<div class="row">
+						<div class="col-md-7">
+							<h3>Awesome VPS <strong>Hosting Services</strong> from IMHOweb <strong>Fast. Reliable</strong>. and <strong>Easy to Use</strong></h3>
+							<p>VPS (Virtual Private Server) is a great option and cost-effective solution when comes to advanced, medium to big web hosting. It guarantees a certain degree of website security, scalability, resource allocation for you to run higher resources consuming website.</p>
+							<a href="#" class="more-link">More about Wordpress Hosting <i class="fa fa-angle-double-right"></i></a>
+							<div class="media service-quote">
+								<div class="media-left"><a href="#" class="media-object"><img src="assetx/images/service-quote.png" alt="IMHOweb Client image" class="img-circle"></a></div>
+								<div class="media-body">
+									<p><em>Love the support from IMHOweb team! WordPress hosting boosted my theme business.</em></p>
+									<h4>Jane Sanders</h4>
+									<h5>Themeworks</h5>
+								</div>
+								<div class="media-right"><span class="media-object"><i class="fa fa-quote-right fa-4x"></i></span></div>
+							</div>
+						</div>
+						<div class="col-md-5 col-plan">
+							<div class="hst-plan row">
+								<ul class="plan-list nav">
+									<li><i class="fa fa-bolt"></i><strong>Fast &amp; Simple</strong> WordPress Hosting</li>
+									<li><i class="fa fa-mouse-pointer"></i><strong>1-Click Staging</strong> Environment</li>
+									<li><i class="fa fa-gear"></i>All-in-One Control Panel</li>
+									<li><i class="fa fa-tachometer"></i>Host up to <strong>100 Websites</strong></li>
+									<li><i class="fa fa-gear"></i><strong>1TB Monthly</strong> Bandwidth</li>
+									<li><i class="fa fa-gear"></i><strong>20 GB SSD</strong> Storage</li>
+									<li><i class="fa fa-life-bouy"></i>24/7/365 <strong>Live Support</strong></li>
+								</ul>
+								<div class="media hst-plan-price">
+									<div class="media-body">
+										Price starting from <span class="price"><sup>$</sup>20<sub>/month</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="hst-4">
+					<div class="row">
+						<div class="col-md-7">
+							<h3>Awesome Dedicated <strong>Hosting Services</strong> from IMHOweb <strong>Fast. Reliable</strong>. and <strong>Easy to Use</strong></h3>
+							<p>A dedicated server will be the most expensive of these three options because it dedicates the entire server to your exclusive use. This means that sharing your resources with others will be impossible.</p>
+							<a href="#" class="more-link">More about Wordpress Hosting <i class="fa fa-angle-double-right"></i></a>
+							<div class="media service-quote">
+								<div class="media-left"><a href="#" class="media-object"><img src="assetx/images/service-quote.png" alt="IMHOweb Client image" class="img-circle"></a></div>
+								<div class="media-body">
+									<p><em>Love the support from IMHOweb team! WordPress hosting boosted my theme business.</em></p>
+									<h4>Jane Sanders</h4>
+									<h5>Themeworks</h5>
+								</div>
+								<div class="media-right"><span class="media-object"><i class="fa fa-quote-right fa-4x"></i></span></div>
+							</div>
+						</div>
+						<div class="col-md-5 col-plan">
+							<div class="hst-plan row">
+								<ul class="plan-list nav">
+									<li><i class="fa fa-bolt"></i><strong>Fast &amp; Simple</strong> WordPress Hosting</li>
+									<li><i class="fa fa-mouse-pointer"></i><strong>1-Click Staging</strong> Environment</li>
+									<li><i class="fa fa-gear"></i>All-in-One Control Panel</li>
+									<li><i class="fa fa-tachometer"></i>Host up to <strong>100 Websites</strong></li>
+									<li><i class="fa fa-gear"></i><strong>1TB Monthly</strong> Bandwidth</li>
+									<li><i class="fa fa-gear"></i><strong>20 GB SSD</strong> Storage</li>
+									<li><i class="fa fa-life-bouy"></i>24/7/365 <strong>Live Support</strong></li>
+								</ul>
+								<div class="media hst-plan-price">
+									<div class="media-body">
+										Price starting from <span class="price"><sup>$</sup>20<sub>/month</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+    <!--Why Choose Us-->
+    <section class="row why-choose-us">
+        <div class="container">
+            <div class="row section-title text-center">
+				<h2>Why Choose Us</h2>
+				<p>It has survived not five centuries, but the leap into electronic typesetting.</p>
+			</div>
+           <div class="row">
+               <div class="col-sm-6 col-md-4 why-to-choose">
+                   <div class="row wtc-inner text-center">
+                       <div class="row wtc-icon"><i class="fa fa-money fa-2x" aria-hidden="true"></i></div>
+                       <h2 class="h4 wtc-title">Client Value</h2>
+                       <p>We run and manage our own web hosting infrastructure. We provide domains and hosting at some of the best prices possible.</p>
+                       <a href="#" class="wtc-read-more">Read More</a>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-md-4 why-to-choose">
+                   <div class="row wtc-inner text-center">
+                       <div class="row wtc-icon"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></div>
+                       <h2 class="h4 wtc-title">Reliable Service</h2>
+                       <p>We offer quality Web Services and has served 1000's individuals, companies and organizations across the world.</p>
+                       <a href="#" class="wtc-read-more">Read More</a>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-md-4 why-to-choose">
+                   <div class="row wtc-inner text-center">
+                       <div class="row wtc-icon"><i class="fa fa-magic fa-2x" aria-hidden="true"></i></div>
+                       <h2 class="h4 wtc-title">Innovate at Work</h2>
+                       <p>We have designed an solutions perfectly suited for small teams and for those who want to level up their innovation efforts.</p>
+                       <a href="#" class="wtc-read-more">Read More</a>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-md-4 why-to-choose">
+                   <div class="row wtc-inner text-center">
+                       <div class="row wtc-icon"><i class="fa fa-server fa-2x" aria-hidden="true"></i></div>
+                       <h2 class="h4 wtc-title">Fast SSD Servers</h2>
+                       <p>We offer Virtual Private Servers (VPS Hosting) on powerful hardware with options of Linux or Windows Server operating systems.</p>
+                       <a href="#" class="wtc-read-more">Read More</a>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-md-4 why-to-choose">
+                   <div class="row wtc-inner text-center">
+                       <div class="row wtc-icon"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></div>
+                       <h2 class="h4 wtc-title">Constant Updates</h2>
+                       <p>Cloud-based and digital technologies to create better customer experiences, better efficiency, business insights, and greater innovation from the data.</p>
+                       <a href="#" class="wtc-read-more">Read More</a>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-md-4 why-to-choose">
+                   <div class="row wtc-inner text-center">
+                       <div class="row wtc-icon"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></div>
+                       <h2 class="h4 wtc-title">Largest Network</h2>
+                       <p> We are is legally incorporated in 3 countries. The company is a leading web and domain hosting in Africa.</p>
+                       <a href="#" class="wtc-read-more">Read More</a>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </section>
+    
+    <!--Call to Action-->
+    <section class="row c2a-plan">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-6">
+                    <h2 class="h1 c2ap-title"><strong>IMHOweb</strong> Gives you <strong>Ease</strong> &amp; <strong>Flexibility</strong></h2>
+                    <ul class="nav c2ap-list">
+                        <li><i class="fa fa-bolt"></i><strong>Fast &amp; Simple</strong> WordPress Hosting</li>
+                        <li><i class="fa fa-mouse-pointer"></i><strong>1-Click Staging</strong> Environment</li>
+                        <li><i class="fa fa-gear"></i>All-in-One <strong>Control</strong> Panel</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">View Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--Pricing Tabs-->
+    <section class="row pricing-tabs-section" id="pricing-tabs-section">
+        <div class="container">
+            <div class="row section-title text-center">
+				<h2>Pricing</h2>
+			</div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs pricing-tab" role="tablist">
+                <li role="presentation" class="active"><a href="#pricing-tab1" aria-controls="pricing-tab1" role="tab" data-toggle="tab">WordPress Hosting</a></li>
+                <li role="presentation"><a href="#pricing-tab2" aria-controls="pricing-tab2" role="tab" data-toggle="tab">Shared Hosting</a></li>
+                <li role="presentation"><a href="#pricing-tab3" aria-controls="pricing-tab3" role="tab" data-toggle="tab">VPS Hosting</a></li>
+                <li role="presentation"><a href="#pricing-tab4" aria-controls="pricing-tab4" role="tab" data-toggle="tab">Dedicated Hosting</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content pricing-tab-contents">
+                <div role="tabpanel" class="tab-pane active fade in" id="pricing-tab1">
+                    <div class="row">
+                        <div class="col-sm-4 pricing-plan green">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Personal</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>30GB SSD</strong> Storage</li>
+                                    <li><strong>400,000</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>2 Sites</strong></li>
+                                    <li><strong>1 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>2 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>20 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan primary">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Studio</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>100GB SSD</strong> Storage</li>
+                                    <li><strong>2 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>10 Sites</strong></li>
+                                    <li><strong>2 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>5 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>60 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan blue">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Agency</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>500GB SSD</strong> Storage</li>
+                                    <li><strong>10 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>50 Sites</strong></li>
+                                    <li><strong>5 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>10 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>240 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="pricing-tab2">
+                    <div class="row">
+                        <div class="col-sm-4 pricing-plan green">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Personal</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>30GB SSD</strong> Storage</li>
+                                    <li><strong>400,000</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>2 Sites</strong></li>
+                                    <li><strong>1 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>2 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>20 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan primary">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Studio</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>100GB SSD</strong> Storage</li>
+                                    <li><strong>2 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>10 Sites</strong></li>
+                                    <li><strong>2 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>5 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>60 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan blue">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Agency</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>500GB SSD</strong> Storage</li>
+                                    <li><strong>10 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>50 Sites</strong></li>
+                                    <li><strong>5 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>10 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>240 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="pricing-tab3">
+                    <div class="row">
+                        <div class="col-sm-4 pricing-plan green">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Personal</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>30GB SSD</strong> Storage</li>
+                                    <li><strong>400,000</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>2 Sites</strong></li>
+                                    <li><strong>1 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>2 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>20 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan primary">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Studio</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>100GB SSD</strong> Storage</li>
+                                    <li><strong>2 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>10 Sites</strong></li>
+                                    <li><strong>2 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>5 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>60 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan blue">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Agency</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>500GB SSD</strong> Storage</li>
+                                    <li><strong>10 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>50 Sites</strong></li>
+                                    <li><strong>5 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>10 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>240 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="pricing-tab4">
+                    <div class="row">
+                        <div class="col-sm-4 pricing-plan green">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Personal</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>30GB SSD</strong> Storage</li>
+                                    <li><strong>400,000</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>2 Sites</strong></li>
+                                    <li><strong>1 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>2 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>20 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan primary">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Studio</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>100GB SSD</strong> Storage</li>
+                                    <li><strong>2 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>10 Sites</strong></li>
+                                    <li><strong>2 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>5 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>60 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pricing-plan blue">
+                            <div class="pp-inner row">
+                                <h2 class="h4 pp-title">Agency</h2>
+                                <ul class="nav pp-list">
+                                    <li><strong>500GB SSD</strong> Storage</li>
+                                    <li><strong>10 Millions</strong> Monthly Visitors</li>
+                                    <li>Up to <strong>50 Sites</strong></li>
+                                    <li><strong>5 Google Apps</strong> for Work user accounts</li>
+                                    <li>Malware Detection &amp; Removal for <strong>10 Sites</strong></li>
+                                </ul>
+                                <div class="media hst-plan-price">
+									<div class="media-body">
+										<span class="price"><sup>$ </sup>240 <sub>monthly</sub></span>
+									</div>
+									<div class="media-right"><a href="#" class="btn btn-default">choose plan</a></div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--Client testimonial-->
+    <section class="row customer-testimonial-section">
+        <div class="container">
+            <div class="row section-title text-center">
+				<h2> Testimonial</h2>
+			</div>
+            <!-- Indicators -->
+            <ul class="carousel-indicators ct-indicator dotv">
+                <li data-target="#customer-testimonial" data-slide-to="0" class="myCarousel-target"></li>
+                <li data-target="#customer-testimonial" data-slide-to="1" class="myCarousel-target active"></li>
+                <li data-target="#customer-testimonial" data-slide-to="2" class="myCarousel-target"></li>
+            </ul>
+        </div>
+    </section>
+    
+    <!--Blogs-->
+    <section class="row latest-blogs">
+        <div class="container">
+            <div class="row section-title text-center">
+				<h2>Latest from Blog</h2>
+			</div>
+            <div class="row">
+                <div class="col-sm-4 latest-post">
+                    <img src="assetx/images/lpost1.jpg" alt="A galley of type and scrambled it to make a type." class="img-responsive">
+                    <div class="lp-inner row">
+                        <ul class="lp-meta list-unstyled">
+                            <li class="lp-cat"><em>in</em> <a href="#">data</a>, <a href="#">ssd</a>, <a href="#">intel</a></li>
+                            <li class="lp-date"><a href="#">Feb 18, 2016</a></li>
+                        </ul>
+                        <a href="blog-post.html"><h2 class="lp-title">A galley of type and scrambled it to make a type.</h2></a>
+                    </div>
+                </div>
+                <div class="col-sm-4 latest-post">
+                    <img src="assetx/images/lpost2.jpg" alt="Lorem Ipsum has been the industry's standard." class="img-responsive">
+                    <div class="lp-inner row">
+                        <ul class="lp-meta list-unstyled">
+                            <li class="lp-cat"><em>in</em> <a href="#">data</a>, <a href="#">ssd</a>, <a href="#">intel</a></li>
+                            <li class="lp-date"><a href="#">Feb 18, 2016</a></li>
+                        </ul>
+                        <a href="blog-post.html"><h2 class="lp-title">Lorem Ipsum has been the industry's standard.</h2></a>
+                    </div>
+                </div>
+                <div class="col-sm-4 latest-post">
+                    <img src="assetx/images/lpost3.jpg" alt="A galley of type and scrambled it to make a type." class="img-responsive">
+                    <div class="lp-inner row">
+                        <ul class="lp-meta list-unstyled">
+                            <li class="lp-cat"><em>in</em> <a href="#">data</a>, <a href="#">ssd</a>, <a href="#">intel</a></li>
+                            <li class="lp-date"><a href="#">Feb 18, 2016</a></li>
+                        </ul>
+                        <a href="blog-post.html"><h2 class="lp-title">A galley of type and scrambled it to make a type.</h2></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--Clients-->
+    <section class="row client-logos">
+        <div class="container">            
+            <div class="row section-title text-center">
+				<h2>Client Logos</h2>
+			</div>
+            <div class="row">
+                <div class="col-sm-2 client-logo"><a href="index.html" data-toggle="tooltip" data-placement="top" title="Adobe"><img src="{{ url_for('static', filename='assetx/images/client1.png') }}" alt="Adobe"></a></div>
+                <div class="col-sm-2 client-logo"><a href="index.html" data-toggle="tooltip" data-placement="top" title="Huawei"><img src="{{ url_for('static', filename='assetx/images/client2.png') }}" alt="Huawei"></a></div>
+                <div class="col-sm-2 client-logo"><a href="index.html" data-toggle="tooltip" data-placement="top" title="One Plus"><img src="{{ url_for('static', filename='assetx/images/client3.png') }}" alt="One Plus"></a></div>
+                <div class="col-sm-2 client-logo"><a href="index.html" data-toggle="tooltip" data-placement="top" title="Mitsubishi"><img src="{{ url_for('static', filename='assetx/images/client4.png') }}" alt="Mitsubishi"></a></div>
+                <div class="col-sm-2 client-logo"><a href="index.html" data-toggle="tooltip" data-placement="top" title="Samsung"><img src="{{ url_for('static', filename='assetx/images/client5.png') }}" alt="Samsung"></a></div>
+                <div class="col-sm-2 client-logo"><a href="index.html" data-toggle="tooltip" data-placement="top" title="Under Armour"><img src="{{ url_for('static', filename='assetx/images/client6.png') }}" alt="Under Armour"></a></div>
+            </div>
+        </div>
+    </section>
+	
+</main>
+
+<!--Footer-->
+<footer id="footer" class="site-footer">
+    <!--Footer Bottom-->
+    <section class="row site-footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 widget-footer">
+                    <h4 class="widget-title">Quick Links</h4>
+                    <div class="row widget-content">
+                        <ul class="menu">
+                            <li><a href="index.html">Home Page</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#">Quick Pages</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3 widget-footer">
+                    <h4 class="widget-title">Stay Connected</h4>
+                    <div class="row widget-content">
+                        <ul class="list-unstyled fsocial">
+                            <li><a href="http://twitter.com/imhodot"><i class="fa fa-twitter fa-2x"></i></a></li>
+                            <li><a href="http://github.com/imhodot"><i class="fa fa-github fa-2x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-5 widget-footer">
+                    <h4 class="widget-title">Sign Up for Our Newsletter</h4>
+                    <div class="row widget-content">
+                        <p>Join Our Newsletter & Marketing Communication. We'll send you news and offers..</p>
+                        <form action="#" class="input-group footer-subscribe-form">
+                            <input type="email" class="form-control">
+                            <span class="input-group-addon"><button type="submit" class="btn btn-primary">subscribe</button></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--Copytright-->
+    <section class="copyright-hp row">
+        <div class="container">&copy;2022. All Rights Reserved by IMHOweb.</div>
+    
+    </section>
+</footer>
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{{ url_for('static', filename='vendors/jquery-2.2.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/owl/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/isotope.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/imagesloaded.pkgd.min.js') }}"></script>
+<!--Theme JS-->
+<script src="{{ url_for('static', filename='assetx/js/hostpro.js') }}"></script>
+
+</body>
+</html>
