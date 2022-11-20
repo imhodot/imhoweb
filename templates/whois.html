@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}whois, domain {% endblock %}
+{% block header %} 
+<header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="index.html" class="logo"><img src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="" class="img-fluid"></a>
+        <!--<a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4">IMHOweb</span>        
+        </a>-->
+        {% block navbar %}    
+          {% include "_navbar.html" %}
+        {% endblock navbar %}
+    </div>
+</header>
+{% endblock %}
+{% block content %}
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h4 class="display-6 fw-normal">WHOIS lookup</h4>
+    <form action="" method="POST">
+      <div class="input-group">
+        {{ form.hidden_tag() }}
+        {{ form.domain(class="form-control", id="address", placeholder="enter domain") }}
+        <span class="input-group-btn">
+          {{ form.submit(class="btn btn-outline-primary", id="addressSearch") }}
+        </span>
+      </div>
+    </form>
+    <p class="fs-6 text-muted">With whois domain lookup, you can search for a specific domain. <br /> 
+      If the domain has been registered, we will provide you with its publicly available WHOIS data, 
+      including domain's status, ownership, nameservers, and etc. 
+    </p>
+  </div>  
+  <div>
+    <code>
+      {{data}}
+    </code> 
+  </div>
+{% endblock %}
