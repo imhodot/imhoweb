@@ -66,8 +66,7 @@ Links
 -----
 
 * Website: https://www.imhoweb.net
-* Code: https://gitlab.com/uobis0/imhoweb
-* Issue Tracker: https://gitlab.com/uobis0/imhoweb/issues
+* Issue Tracker: https://github.com/imhodot/IMHOweb/issues
 * Test status:
 
   * Linux, Mac: https://travis-ci.org/uobis/imhoweb
