@@ -48,6 +48,8 @@
         </p>
       </div>
       <div class="col-md-10 mx-auto col-lg-6">
+        <img class="mb-4" src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="">
+        <h1 class="h3 mb-3 fw-normal">Login</h1>
         {% for field, errors in form.errors.items() %}<p style="color: red;">Error: {{ ', '.join(errors) }}</p>{% endfor %}
         <form class="p-4 p-md-5 border rounded-3 bg-light" action="" method="POST">
           {{ form.hidden_tag() }}
@@ -69,7 +71,7 @@
           </div>
           <!-- Submit button -->
           {{ form.submit(class="w-100 btn btn-md btn-primary")}}
-          <small class="text-muted text-center">By clicking Sign up, you agree to IMHOweb's <a href="/terms" class="link-danger">terms of use</a> and <a href="/privacy" class="link-danger">privacy</a>.</small>
+          <small class="text-muted text-center">By clicking Sign up, you agree to IMHOweb's <a href="/terms" class="link-danger">Terms of Use</a> and <a href="/privacy" class="link-danger">Privacy</a>.</small>
           <hr class="my-4">
           <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/login" class="link-danger">Log in</a></p>
         </form>
