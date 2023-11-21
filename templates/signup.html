@@ -49,7 +49,7 @@
       </div>
       <div class="col-md-10 mx-auto col-lg-6">
         <img class="mb-4" src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="">
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <h1 class="h3 mb-3 fw-normal">Create An Account</h1>
         {% for field, errors in form.errors.items() %}<p style="color: red;">Error: {{ ', '.join(errors) }}</p>{% endfor %}
         <form class="p-4 p-md-5 border rounded-3 bg-light" action="" method="POST">
           {{ form.hidden_tag() }}
