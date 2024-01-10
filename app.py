@@ -111,6 +111,11 @@ def about():
 def contact():
     return render_template('contact.html')
 
+@app.route('/product')
+@app.route('/product.html')
+def product():
+    return render_template('product.html')
+
 @app.route('/support')
 @app.route('/support.html')
 def support():
