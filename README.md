@@ -1,5 +1,5 @@
 # IMHOweb
-Wed, Domain and email hosting
+Web, Domain and email hosting
 
 ## To create the initial db and manual user add
 
