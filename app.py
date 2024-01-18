@@ -106,6 +106,11 @@ def privacy():
 def about():
     return render_template('about.html')
 
+@app.route('/dashboard')
+@app.route('/dashboard.html')
+def dashboard():
+    return render_template('dashboard.html')
+
 @app.route('/contact')
 @app.route('/contact.html')
 def contact():
