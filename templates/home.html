@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %} {{  current_user.fname }} - Home{% endblock %}
+{% block navbar %}
+  {% include "_navbar.html" %}
+{% endblock %}
 {% block content %}
 <header>
   <div class="px-3 py-2 text-bg-dark">
