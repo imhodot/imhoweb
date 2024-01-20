@@ -116,11 +116,6 @@ def dashboard():
 def contact():
     return render_template('contact.html')
 
-@app.route('/profile')
-@app.route('/profile.html')
-def profile():
-    return render_template('profile.html')
-
 @app.route('/products')
 @app.route('/products.html')
 def products():
@@ -214,6 +209,7 @@ def login():
 @login_required
 def logout():
     logout_user()
+    flash('You have been logged out')
     return redirect(url_for('login'))
 
 @app.route('/u/<id>',  methods=('GET', 'POST'))
