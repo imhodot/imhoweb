@@ -189,6 +189,7 @@ def edit(user_id):
         db.session.commit()
 
         return redirect(url_for('home'))
+        
     return render_template('edit.html', user=user)
 
 @app.route('/login', methods=('GET', 'POST'))
