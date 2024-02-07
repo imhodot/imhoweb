@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Terms of Service{% endblock %}
-{% block style %} {% endblock style %}
+{% block header %}
+  {% include "_header.html" %}
+{% endblock %}
+{% block style %} 
+  <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+{% endblock style %}
 {% block navbar %}
 
 {% endblock %}
