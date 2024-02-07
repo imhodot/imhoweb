@@ -1,14 +1,17 @@
 {% extends "base.html" %}
+
 {% block title %}Terms of Service{% endblock %}
-{% block header %}
-  {% include "_header.html" %}
-{% endblock %}
+
 {% block style %} 
   <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
 {% endblock style %}
-{% block navbar %}
 
+{% block header %}
+  {% include "_header.html" %}
 {% endblock %}
+
+{% block navbar %} {% endblock %}
+
 {% block content %}
     <div class="container">
       <div class="starter-template">
