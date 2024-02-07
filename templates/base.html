@@ -14,10 +14,9 @@
   
     <!-- Vendor CSS Files -->
     <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
   </head>
+  <!-- Custom styles for this template -->
+  {% block style %} {% endblock %}
   
   <body>
     
