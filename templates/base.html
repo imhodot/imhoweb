@@ -18,56 +18,34 @@
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
   </head>
+  
   <body>
     
-<div class="container py-3">
-  <header>
-    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-      <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="" class="img-fluid"></a>
-      <!--<a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">IMHOweb</span>        
-      </a>-->
-      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse">
-              <div></div>
-          <a class="me-3 py-2 text-dark text-decoration-none" href="/products">Products</a>
-        </div>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Features</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="/support">Support</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Resources</a>
-        <a class="py-2 btn btn-sm btn-outline-secondary" href="/contact" title="Contact Us">Contact</a>
-        <a class="py-2 btn btn-sm btn-outline-secondary" href="/signup" title="Create an account">SignUp</a>
-      </nav>
-    </div>
-  </header>
-</head>
+    <div class="container py-3">
 
-<body>
+      <!-- ======= Header ======= -->
+      {% block header %}{% endblock header %}
+      <!-- End Header -->
 
-  <!-- ======= Header ======= -->
-  {% block header %}{% endblock header %}
-  <!-- End Header -->
+      <main id="main">
 
-  <main id="main">
+        <section class="inner-page">
+          <div class="container">
+            <p>
+              {% block content %} {% endblock %}
+            </p>
+          </div>
+        </section>
 
-    <section class="inner-page">
-      <div class="container">
-        <p>
-          {% block content %} {% endblock %}
-        </p>
+      </main><!-- End #main -->
+
+      <!-- ======= Footer ======= -->
+      <div class="container py-3">
+        {% block footer %}    
+          {% include "_footer.html" %}
+        {% endblock footer %}
       </div>
-    </section>
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <div class="container py-3">
-    {% block footer %}    
-      {% include "_footer.html" %}
-    {% endblock footer %}
-  </div>
+    </div>
 
   </body>
 </html>
