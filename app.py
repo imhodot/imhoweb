@@ -76,8 +76,9 @@ class WhoisForm(FlaskForm):
     domain = StringField(validators=[InputRequired()])
     submit = SubmitField('Search')
 
-class Support(Flaskform):
-    question = 
+class Support(FlaskForm):
+    question = StringField(validators=[inputRequired()])
+    submit = SubmitField('Submit')
 
 # Views/Routes
 @app.before_request
@@ -125,9 +126,11 @@ def contact():
 def products():
     return render_template('products.html')
 
-@app.route('/support')
+@app.route('/support', methods=('GET', 'POST'))
 @app.route('/support.html')
 def support():
+    what = []
+    form = Support()
     return render_template('support.html')
 
 @app.route('/checkout')
