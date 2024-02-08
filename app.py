@@ -130,8 +130,9 @@ def products():
 @app.route('/support.html')
 def support():
     form = Support()
-    if request.method == 'POST' and form.validate_on_submit():
-        print('Your question has benn submitted!')
+    if form.validate_on_submit():
+        flash('Your question has been submitted!')
+        return render_template('support.html', form=form)
     return render_template('support.html', form=form)
 
 @app.route('/checkout')

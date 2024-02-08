@@ -20,15 +20,15 @@
             {% block content %}
               <div class="starter-template">
                 <h1>Support Center</h1>
+                <p class="lead">How can we help you?</p>
                 <form action="" method="POST">
                   <div class="input-group">
-                    {{ form.question.label }} {{ form.question(class="form-control", placeholder='How can we help you') }}
+                    {{ form.question(class="form-control", placeholder='How can we help you') }}
                     <span class="input-group-btn">
                       {{ form.submit(class="btn btn-outline-primary") }}
                     </span>
                   </div>
                 </form>
-                <p class="lead">How can we help you?</p>
               </div>
             {% endblock content %}
           </p>
