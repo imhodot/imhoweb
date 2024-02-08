@@ -77,7 +77,7 @@ class WhoisForm(FlaskForm):
     submit = SubmitField('Search')
 
 class Support(FlaskForm):
-    question = StringField(validators=[inputRequired()])
+    question = StringField(validators=[InputRequired()])
     submit = SubmitField('Submit')
 
 # Views/Routes
@@ -129,9 +129,10 @@ def products():
 @app.route('/support', methods=('GET', 'POST'))
 @app.route('/support.html')
 def support():
-    what = []
     form = Support()
-    return render_template('support.html')
+    if request.method == 'POST' and form.validate_on_submit():
+        print('Your question has benn submitted!')
+    return render_template('support.html', form=form)
 
 @app.route('/checkout')
 @app.route('/checkout.html')
