@@ -76,6 +76,9 @@ class WhoisForm(FlaskForm):
     domain = StringField(validators=[InputRequired()])
     submit = SubmitField('Search')
 
+class Support(Flaskform):
+    question = 
+
 # Views/Routes
 @app.before_request
 def before_request():
