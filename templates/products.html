@@ -1,105 +1,18 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="@amachefe, and imhoweb contribuutors">
-    <meta name="generator" content="imhoweb 0.100.3">
-    <title>ImHOweb - Products</title>
+{% extends "base.html" %}
 
-    <link rel="canonical" href="/product/">
+{% block title %}IM{% endblock %}
 
-    <!-- Favicons -->
-    <link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-  
-    <!-- Vendor CSS Files -->
-    <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+{% block style %} 
+  <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+{% endblock style %}
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+{% block header %}
+  {% include "_header.html" %}
+{% endblock %}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+{% block navbar %} {% endblock %}
 
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='assets/css/product.css') }}" rel="stylesheet">
-  </head>
-  <body class="bg-light">
-    
-<div class="container">
-  <main>
-    <div class="container py-3">
-      <header>
-        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-          <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="" class="img-fluid"></a>
-          <!--<a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-            <span class="fs-4">IMHOweb</span>        
-          </a>-->
-          <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <a class="me-3 py-2 text-dark text-decoration-none" href="/product">Products</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Features</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Pricing</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="/support">Support</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Resources</a>
-            <a class="py-2 btn btn-sm btn-outline-secondary" href="/contact" title="Contact Us">Contact</a>
-            <a class="py-2 btn btn-sm btn-outline-secondary" href="/signup" title="Create an account">SignUp</a>
-          </nav>
-        </div>
-      </header>
-    </div>
-    
+{% block content %}
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md- text-center bg-body-tertiary">
       <div class="col-md-6 p-lg-5 mx-auto my-5">
         <h1 class="display-3 fw-bold">Our Products</h1>
@@ -201,3 +114,10 @@
 
   </body>
 </html>
+
+
+
+
+
+
+<link href="{{ url_for('static', filename='assets/css/product.css') }}" rel="stylesheet">
