@@ -116,6 +116,11 @@ def about():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route('/domains')
+@app.route('/domains.html')
+def domains():
+    return render_template('domains.html')
+
 @app.route('/contact')
 @app.route('/contact.html')
 def contact():
