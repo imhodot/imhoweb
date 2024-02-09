@@ -121,10 +121,10 @@ def dashboard():
 def contact():
     return render_template('contact.html')
 
-@app.route('/products')
-@app.route('/products.html')
+@app.route('/hosting')
+@app.route('/hosting.html')
 def products():
-    return render_template('products.html')
+    return render_template('hosting.html')
 
 @app.route('/support', methods=('GET', 'POST'))
 @app.route('/support.html')
