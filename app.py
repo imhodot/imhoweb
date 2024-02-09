@@ -140,8 +140,9 @@ def support():
 def checkout():
     return render_template('checkout.html')
 
-@app.route('/', methods=('GET', 'POST'))
-def whois():
+@app.route('/domains', methods=('GET', 'POST'))
+@app.route('/domains.html')
+def domains():
     data = []
     form = WhoisForm()
     # https://rapidapi.com/domaination-domaination-default/api/domaination-io
@@ -159,10 +160,10 @@ def whois():
         data = res.read()
 
         print(data.decode("utf-8"))
-        return render_template('whois.html', form=form, data=data)
+        return render_template('domains.html', form=form, data=data)
         #return jsonify(data)
 
-    return render_template('whois.html', form=form)
+    return render_template('domains.html', form=form)
 
 @app.route('/signup', methods=('GET', 'POST'))
 @app.route('/signup.html')
