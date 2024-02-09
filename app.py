@@ -140,7 +140,7 @@ def support():
 def checkout():
     return render_template('checkout.html')
 
-@app.route('/whois', methods=('GET', 'POST'))
+@app.route('/', methods=('GET', 'POST'))
 def whois():
     data = []
     form = WhoisForm()
