@@ -55,6 +55,7 @@ class SignupForm(FlaskForm):
     fname = StringField('Name',validators=[DataRequired()])
     email = StringField('Your Email',validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=6)])
     subscribe = BooleanField('Subscribe to our newsletter')
     submit = SubmitField('Sign Up')
 
@@ -181,8 +182,13 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('You can login now!')
-        return redirect(url_for('login'))
+        if confirm_password != password:
+            flash('Password did not match!', category='error')
+            return render_template('signup.html')
+        else:
+            flash('You can login now!')
+            return redirect(url_for('login'))
+    
     return render_template('signup.html', form=form)
 
 @app.route('/<int:user>/edit/', methods=('GET', 'POST'))

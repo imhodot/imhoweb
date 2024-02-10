@@ -65,6 +65,10 @@
             {{ form.password( class="form-control", id="floatingPassword", placeholder="Password") }}
             {{ form.password.label(cfor="floatingPassword") }}            
           </div>
+          <div class="form-floating mb-3">
+            {{ form.confirm_password( class="form-control", id="floatingPassword", placeholder="Confirm Password") }}
+            {{ form.confirm_password.label(cfor="floatingPassword") }}            
+          </div>
           <div class="checkbox mb-3">
             {{ form.subscribe(class="form-check-input me-2", checked="true") }}
             {{ form.subscribe.label }}
