@@ -65,7 +65,7 @@ class SignupForm(FlaskForm):
 
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
-            raise ValidationError('Username already in use.', category=)
+            raise ValidationError('Username already in use.', category='error')
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired()])
@@ -184,6 +184,7 @@ def signup():
         db.session.commit()
         if confirm_password != password:
             flash('Password did not match!', category='error')
+        elif:
             return render_template('signup.html')
         else:
             flash('You can login now!', category='success')
