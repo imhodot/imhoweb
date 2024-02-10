@@ -61,11 +61,11 @@ class SignupForm(FlaskForm):
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.')
+            raise ValidationError('Email already registered.', category='error')
 
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
-            raise ValidationError('Username already in use.')
+            raise ValidationError('Username already in use.', category=)
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired()])
@@ -186,7 +186,7 @@ def signup():
             flash('Password did not match!', category='error')
             return render_template('signup.html')
         else:
-            flash('You can login now!')
+            flash('You can login now!', category='success')
             return redirect(url_for('login'))
     
     return render_template('signup.html', form=form)
