@@ -184,7 +184,9 @@ def signup():
         db.session.commit()
         if confirm_password != password:
             flash('Password did not match!', category='error')
-        elif:
+            return render_template('signup.html')
+        elif len(password) < 6:
+            flash('Password must not be less than 6!', category='error')
             return render_template('signup.html')
         else:
             flash('You can login now!', category='success')
