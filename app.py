@@ -3,6 +3,7 @@
 import os
 from flask import Flask, render_template, url_for, request, redirect, session, abort, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
@@ -52,20 +53,24 @@ class User(db.Model, UserMixin):
 
 # Forms
 class SignupForm(FlaskForm):
-    username = StringField('Name',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
+    username = StringField('User Name',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
     email = StringField('Your Email',validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=8), EqualTo('confirm_password', message='Passwords must match')])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=8)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=8), EqualTo('password', message='Passwords must match')])
     subscribe = BooleanField('Subscribe to our newsletter')
     submit = SubmitField('Sign Up')
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.', category='error')
+            raise ValidationError('Email already registered.')
 
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
-            raise ValidationError('Username already in use.', category='error')
+            raise ValidationError('Username already in use.')
+
+    def validate_password(self,field):
+        if self.password.data != self.confirm_password.data:
+            raise ValidationError('Passwords must match!')
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired()])
@@ -132,7 +137,7 @@ def contact():
 def products():
     return render_template('hosting.html')
 
-@app.route('/support', methods=('GET', 'POST'))
+@app.route('/support', methods=['GET', 'POST'])
 @app.route('/support.html')
 def support():
     form = Support()
@@ -146,7 +151,7 @@ def support():
 def checkout():
     return render_template('checkout.html')
 
-@app.route('/whois', methods=('GET', 'POST'))
+@app.route('/whois', methods=['GET', 'POST'])
 def whois():
     data = []
     form = WhoisForm()
@@ -170,30 +175,23 @@ def whois():
 
     return render_template('whois.html', form=form)
 
-@app.route('/signup', methods=('GET', 'POST'))
+@app.route('/signup', methods=['GET', 'POST'])
 @app.route('/signup.html')
 def signup():
     if current_user.is_authenticated:
         return redirect('/home')
     form = SignupForm()
     if form.validate_on_submit():
-        user = User(fname=form.fname.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        if confirm_password != password:
-            flash('Password did not match!', category='error')
-            return render_template('signup.html')
-        elif len(password) < 6:
-            flash('Password must not be less than 6!', category='error')
-            return render_template('signup.html')
-        else:
-            flash('You can login now!', category='success')
-            return redirect(url_for('login'))
+        flash('You can login now!', category='success')
+        return redirect(url_for('login'))
     
     return render_template('signup.html', form=form)
 
-@app.route('/<int:user>/edit/', methods=('GET', 'POST'))
+@app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit(user_id):
     user = User.query.get_or_404(user_id)
@@ -214,7 +212,7 @@ def edit(user_id):
         
     return render_template('edit.html', user=user)
 
-@app.route('/login', methods=('GET', 'POST'))
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect('/home')    
@@ -234,7 +232,7 @@ def logout():
     flash('You have been logged out.')
     return redirect(url_for('login'))
 
-@app.route('/u/<id>',  methods=('GET', 'POST'))
+@app.route('/u/<id>',  methods=['GET', 'POST'])
 @login_required
 def user(id):
     user = User.query.filter_by(id=id).first() 
