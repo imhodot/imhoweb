@@ -7,8 +7,8 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import InputRequired, Length, ValidationError, DataRequired
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
+from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
 
 import http.client, ssl
@@ -52,10 +52,10 @@ class User(db.Model, UserMixin):
 
 # Forms
 class SignupForm(FlaskForm):
-    fname = StringField('Name',validators=[DataRequired()])
+    username = StringField('Name',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
     email = StringField('Your Email',validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=6)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8), EqualTo('confirm_password', message='Passwords must match')])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=8)])
     subscribe = BooleanField('Subscribe to our newsletter')
     submit = SubmitField('Sign Up')
 
@@ -69,7 +69,7 @@ class SignupForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired()])
-    password = PasswordField(validators=[InputRequired(), Length(min=10) ])
+    password = PasswordField(validators=[InputRequired(), Length(min=8) ])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log in')
 
@@ -177,7 +177,6 @@ def signup():
         return redirect('/home')
     form = SignupForm()
     if form.validate_on_submit():
-        print ('obago 2')
         user = User(fname=form.fname.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
