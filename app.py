@@ -188,7 +188,7 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Successful, you can login now!', category='succes')
+        flash('Successful, you can login now!', category='success')
         return redirect(url_for('login'))
 
         if confirm_password != password:
