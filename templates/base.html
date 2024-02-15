@@ -29,29 +29,6 @@
       <main id="main">
 
         <section class="inner-page">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                {% if category = 'error' %}
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                {% endif %}
-
-                {% if category = 'success' %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-          {% endwith %}
           <div class="container">
             <p>
               {% block content %} {% endblock %}

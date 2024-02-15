@@ -28,7 +28,7 @@
       {{ form.hidden_tag() }}
     <img class="mb-4" src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="">
     <h1 class="h3 mb-3 fw-normal">Login</h1>
-    {% for message in get_flashed_messages() %}<p style="color: red;">Error: {{ message }}</p>{% endfor %}
+    {% for message in get_flashed_messages() %}<p style="color: red;">{{ message }}</p>{% endfor %}
     <div class="form-floating">
       {{ form.username(class="form-control", id="floatingInput", placeholder="name@example.com") }}
       {{ form.username.label(for="floatingInput") }}
