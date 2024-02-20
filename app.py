@@ -4,6 +4,7 @@ import os
 from flask import Flask, render_template, url_for, request, redirect, session, abort, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import sqlite3
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
@@ -11,6 +12,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from flask import current_app
 
 import http.client, ssl
 
@@ -44,12 +47,17 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(), default = datetime.utcnow, index = True)
     confirmed_on = db.Column(db.DateTime, nullable=True)
     last_logged_in = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
+    account_confirmation = db.Column(db.Boolean, default=False)
  
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
      
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)
+
+    def generate_confirmation_token(self, expiration=3600):
+        s = Serializer(current_app.config['SECRET_KEY'], expiration)
+        return s.dumps({'confirm': self.id})
 
 # Forms
 class SignupForm(FlaskForm):
