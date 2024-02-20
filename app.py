@@ -12,7 +12,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import Serializer
 from flask import current_app
 
 import http.client, ssl
@@ -58,6 +58,18 @@ class User(db.Model, UserMixin):
     def generate_confirmation_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
         return s.dumps({'confirm': self.id})
+
+    def confirm(self, token):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except:
+            return False
+        if data.get('confirm') != self.id:
+            return False
+        self.account_confirmation = True
+        db.session.add(self)
+        return True
 
 # Forms
 class SignupForm(FlaskForm):
