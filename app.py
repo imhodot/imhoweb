@@ -1,7 +1,7 @@
 #!/bin/env python3
 # app.py
 import os
-from flask import Flask, render_template, url_for, request, redirect, session, abort, flash, jsonify
+from flask import Flask, render_template, url_for, request, redirect, session, abort, flash, jsonify, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import sqlite3
@@ -12,14 +12,16 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
-from itsdangerous import Serializer
-from flask import current_app
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+from flask_mail import Mail, Message
 
 import http.client, ssl
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
+app.config['MAIL_']
+mail = Mail(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'imdata.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -215,7 +217,7 @@ def signup():
             flash('Password did not match!', category='error')
     
     return render_template('signup.html', form=form)
-
+    
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit(user_id):
