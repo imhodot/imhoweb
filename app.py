@@ -13,7 +13,7 @@ from decouple import config
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, BadSignature
 from flask_mail import Mail, Message
 
 import http.client, ssl
@@ -81,6 +81,7 @@ class User(db.Model, UserMixin):
             return False
         self.account_confirmation = True
         db.session.add(self)
+        db.seesion.commit()
         return True    
 
 # Forms
