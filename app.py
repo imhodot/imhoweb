@@ -35,7 +35,6 @@ mail = Mail(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'imdata.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(32)
-app.config['SECURITY_PASSWORD_SALT'] = config('SECUTIRY_PASSWORD_SALT', default='very-important')
 
 db = SQLAlchemy(app)
 
