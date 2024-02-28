@@ -9,12 +9,13 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
-from decouple import config``````````````````````````
+from decouple import config
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, BadSignature
 from flask_mail import Mail, Message
+from dotenv import load_dotenv
 
 import http.client, ssl
 
@@ -22,20 +23,23 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
-#
+# Load environment variables from .env file
+load_dotenv()
+
+# Mail Settings
 app.config['MAIL_DEFAULT_SENDER'] = 'noreply@imhoweb.net'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = ''
-app.config['MAIL_PASSWORD'] = os.environ.get('PASSWORD')
+app.config['MAIL_USERNAME'] = 'imhoweb.net'
+app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_DEBUG'] = app.debug
 app.config['MAIL_SURPRESS_SEND'] = app.testing
-app.config['MAIL_ASCII_ATTACHMENTS'] = None
 mail = Mail(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'imdata.db')
+app.config['SECURITY_PASSWORD_SALT'] = config('SECUTIRY_PASSWORD_SALT', default='very-important')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(32)
 
