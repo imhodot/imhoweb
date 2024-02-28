@@ -56,9 +56,16 @@
 
           <div class="form-floating mb-3">
             {{ form.username(class="form-control", id="floatingInput", placeholder="Your Username")}}
-            {{ form.username.label(for="floatingInput") }}                      
+            {{ form.username.label(for="floatingInput") }}
+              {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              {% endif %}                  
           </div>
-          
+
           <div class="form-floating mb-3">
             {{ form.fname(class="form-control", id="floatingInput", placeholder="Name")}}
             {{ form.fname.label(for="floatingInput") }}                      
