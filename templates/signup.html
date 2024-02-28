@@ -53,6 +53,7 @@
         {% for field, errors in form.errors.items() %}<p style="color: red;">{{ ', '.join(errors) }}</p>{% endfor %}
         <form class="p-4 p-md-5 border rounded-3 bg-light" action="" method="POST">
           {{ form.hidden_tag() }}
+          {{ form.csrf_token }}
 
           <div class="form-floating mb-3">
             {{ form.username(class="form-control", id="floatingInput", placeholder="Your Username")}}
@@ -68,19 +69,50 @@
 
           <div class="form-floating mb-3">
             {{ form.fname(class="form-control", id="floatingInput", placeholder="Name")}}
-            {{ form.fname.label(for="floatingInput") }}                      
+            {{ form.fname.label(for="floatingInput") }}       
+              {% if form.fname.errors %}
+                {% for error in form.fname.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                 </div>
+                {% endfor %}
+              {% endif %}
+
           </div>
           <div class="form-floating mb-3">
             {{ form.email(class="form-control", id="floatingInput", placeholder="name@example.com")}}
-            {{ form.email.label(for="floatingInput") }}            
+            {{ form.email.label(for="floatingInput") }}   
+              {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              {% endif %}         
           </div>
+
           <div class="form-floating mb-3">
             {{ form.password( class="form-control", id="floatingPassword", placeholder="Password") }}
-            {{ form.password.label(cfor="floatingPassword") }}            
+            {{ form.password.label(cfor="floatingPassword") }}     
+              {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              {% endif %}       
           </div>
+
           <div class="form-floating mb-3">
             {{ form.confirm_password( class="form-control", id="floatingPassword", placeholder="Confirm Password") }}
-            {{ form.confirm_password.label(cfor="floatingPassword") }}            
+            {{ form.confirm_password.label(cfor="floatingPassword") }}
+              {% if form.confirm_password.errors %}
+                {% for error in form.confirm_password.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              {% endif %}            
           </div>
           <div class="checkbox mb-3">
             {{ form.subscribe(class="form-check-input me-2", checked="true") }}
