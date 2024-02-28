@@ -53,10 +53,12 @@
         {% for field, errors in form.errors.items() %}<p style="color: red;">{{ ', '.join(errors) }}</p>{% endfor %}
         <form class="p-4 p-md-5 border rounded-3 bg-light" action="" method="POST">
           {{ form.hidden_tag() }}
+
           <div class="form-floating mb-3">
             {{ form.username(class="form-control", id="floatingInput", placeholder="Your Username")}}
             {{ form.username.label(for="floatingInput") }}                      
           </div>
+          
           <div class="form-floating mb-3">
             {{ form.fname(class="form-control", id="floatingInput", placeholder="Name")}}
             {{ form.fname.label(for="floatingInput") }}                      
