@@ -9,7 +9,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
-from decouple import config
+from decouple import config``````````````````````````
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
@@ -21,6 +21,9 @@ import http.client, ssl
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
+
+#
+app.config['MAIL_DEFAULT_SENDER'] = 'noreply@imhoweb.net'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = ''
