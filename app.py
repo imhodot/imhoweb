@@ -17,8 +17,6 @@ from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, B
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 
-from utils import send_email
-
 import http.client, ssl
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -232,11 +230,12 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        token = generate_token(user.email)
-        confirm_url = url_for('confirm_email', token=token, _external=True)
-        html = render_template('confirm_email.html', confirm_url=confirm_url)
-        subject = 'Please confirm your email!'
-        send_email(user.email, subject, html)
+        def send_email(user):
+            token = user.generate_token()
+            confirm_url = url_for('confirm_email', token=token, _external=True)
+            html = render_template('confirm_email.html', confirm_url=confirm_url)
+            msg = Message(subject = 'Please confirm your email!',recepients=[user.email], html=html, sender=app.config['MAIL_DEFAULT_SENDER'])
+            mail.send(msg)
 
         login_user(user)
 
