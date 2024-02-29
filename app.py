@@ -45,9 +45,15 @@ app.config['SECRET_KEY'] = os.urandom(32)
 
 db = SQLAlchemy(app)
 
+migrate = Migrate(app, db)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+# Registering Blueprints
+app.register_blueprint(accounts_bp)
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -73,11 +79,11 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)
 
-    def generate_confirmation_token(self, expiration=3600):
+    def generate_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
         return s.dumps({'confirm': self.id})
 
-    def confirm(self, token):
+    def confirm_token(self, token):
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
             data = s.loads(token)
@@ -227,6 +233,9 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        token = generate_token(user.email)
+        confirm_url = url_for('confirm_email', token=token, _external=True)
+        html = render_template('confirm_email.html', confirm_url=confirm_url)
         flash('Successful, you can login now!', category='success')
         return redirect(url_for('login'))
 
