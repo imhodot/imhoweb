@@ -16,6 +16,7 @@ from datetime import datetime
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, BadSignature
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
+from flask_bcrypt import Bcrypt
 
 import http.client, ssl
 
@@ -40,12 +41,15 @@ mail = Mail(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'imdata.db')
 app.config['SECURITY_PASSWORD_SALT'] = config('SECUTIRY_PASSWORD_SALT', default='very-important')
+app.config['BCRYPT_LOG_ROUNDS'] = 13
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(32)
 
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
+
+bcrypt = Bcrypt(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -70,13 +74,13 @@ class User(db.Model, UserMixin):
     confirmed_on = db.Column(db.DateTime, nullable=True)
     last_logged_in = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     account_confirmation = db.Column(db.Boolean, default=False)
- 
+
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = bcrypt.generate_password_hash(password)
      
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)    
-
+        
 # Forms
 class SignupForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
@@ -214,17 +218,8 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        def send_email(user):
-            token = user.generate_token()
-            confirm_url = url_for('confirm_email', token=token, _external=True)
-            html = render_template('confirm_email.html', confirm_url=confirm_url)
-            msg = Message(subject = 'Please confirm your email!',recepients=[user.email], html=html, sender=app.config['MAIL_DEFAULT_SENDER'])
-            mail.send(msg)
-
-        login_user(user)
-
-        flash('A confirmation email has been sent via email.', 'success')
-        return redirect(url_for('inactive'))
+        flash('You have successfully signed up ', 'success')
+        return redirect(url_for('login'))
     
     return render_template('signup.html', form=form)
     
