@@ -17,6 +17,8 @@ from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, B
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 
+from utils import send_email
+
 import http.client, ssl
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -50,9 +52,6 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
-
-# Registering Blueprints
-app.register_blueprint(accounts_bp)
 
 
 @login_manager.user_loader
@@ -236,11 +235,13 @@ def signup():
         token = generate_token(user.email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
         html = render_template('confirm_email.html', confirm_url=confirm_url)
-        flash('Successful, you can login now!', category='success')
-        return redirect(url_for('login'))
+        subject = 'Please confirm your email!'
+        send_email(user.email, subject, html)
 
-        if confirm_password != password:
-            flash('Password did not match!', category='error')
+        login_user(user)
+
+        flash('A confirmation email has been sent via email.', 'success')
+        return redirect(url_for('inactive'))
     
     return render_template('signup.html', form=form)
     
