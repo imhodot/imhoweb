@@ -74,24 +74,7 @@ class User(db.Model, UserMixin):
         self.password_hash = generate_password_hash(password)
      
     def check_password(self, password):
-        return check_password_hash(self.password_hash,password)
-
-    def generate_token(self, expiration=3600):
-        s = Serializer(current_app.config['SECRET_KEY'], expiration)
-        return s.dumps({'confirm': self.id})
-
-    def confirm_token(self, token):
-        s = Serializer(current_app.config['SECRET_KEY'])
-        try:
-            data = s.loads(token)
-        except:
-            return False
-        if data.get('confirm') != self.id:
-            return False
-        self.account_confirmation = True
-        db.session.add(self)
-        db.seesion.commit()
-        return True    
+        return check_password_hash(self.password_hash,password)    
 
 # Forms
 class SignupForm(FlaskForm):
