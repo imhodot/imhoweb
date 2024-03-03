@@ -17,6 +17,7 @@ from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, B
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 from flask_bcrypt import Bcrypt
+import click
 
 import http.client, ssl
 
@@ -70,10 +71,20 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(150))
     fname = db.Column(db.String(100), nullable=False)
     bio = db.Column(db.Text)
+    admin = db.Column(db.Boolean, nullable=False, default=False)
     created_at = db.Column(db.DateTime(), default = datetime.utcnow, index = True)
     confirmed_on = db.Column(db.DateTime, nullable=True)
     last_logged_in = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
-    account_confirmation = db.Column(db.Boolean, default=False)
+    confirmed = db.Column(db.Boolean, default=False)
+
+    def __init__(self, user_name, email, password_hash, fname, bio, confirmed, paid=False, admin=False, confirmed_on=None):
+        self.username = username
+        self.email = email
+        self.created_at = datetime.datetime.now()
+        self.last_logged_in = datetime.datetime.now()
+        self.admin = admin
+        self.confirmed = confirmed
+        self.confirmed_on = confirmed_on
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password)
@@ -105,7 +116,7 @@ class SignupForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired()])
-    password = PasswordField(validators=[InputRequired(), Length(min=8) ])
+    password = PasswordField(validators=[InputRequired(), Length(min=8)])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log in')
 
@@ -206,6 +217,17 @@ def whois():
 
     return render_template('whois.html', form=form)
 
+@app.cli.command()
+def create_admin():
+    #Creates the admin user,
+    db.session.add(User(
+        email = "ad@min.com",
+        password = "admin",
+        admin = True,
+        confirmed_on = datetime.datetime.now())
+    )
+    db.session.commit()
+
 @app.route('/signup', methods=['GET', 'POST'])
 @app.route('/signup.html')
 def signup():
@@ -214,7 +236,7 @@ def signup():
         return redirect('/home')
     form = SignupForm(request.form)
     if form.validate_on_submit():
-        user = User(username=form.username.data, fname=form.fname.data, email=form.email.data)
+        user = User(username=form.username.data, fname=form.fname.data, email=form.email.data, confirmed=False)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -299,3 +321,4 @@ def internal_server_error(e):
 # Omittable
 if __name__ == "__main__":
     app.run(debug=True)
+    app.cli()
