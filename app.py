@@ -32,7 +32,7 @@ load_dotenv()
 app.config['MAIL_DEFAULT_SENDER'] = 'noreply@imhoweb.net'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'imhoweb.net'
+app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
@@ -269,7 +269,7 @@ def signup():
 
         login_user(user)
 
-        flash('You have successfully signed up ', 'success')
+        flash('A confirmation email has been sent via email', 'success')
         return redirect(url_for('login'))
     
     return render_template('signup.html', form=form)
@@ -293,7 +293,17 @@ def confirm_email(token):
         flash('You have confirmed yoour account. Thanks!', 'success')
     return redirect(url_for('home'))
 
+
+# View/Route to handle unconfirmed account
+@app.route('/unconfirmed')
+@login_required
+def unconfirmed():
+    if current_user.confirmed:
+        return redirect(url_for('home'))
+    flash('Please confirm your account!', 'warning')
+    return render_template('unconfirmed.html')
     
+
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit(user_id):
