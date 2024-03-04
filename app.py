@@ -17,7 +17,7 @@ from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, B
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 from flask_bcrypt import Bcrypt
-import click
+import click 
 
 import http.client, ssl
 
@@ -38,6 +38,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_DEBUG'] = app.debug
 app.config['MAIL_SURPRESS_SEND'] = app.testing
+
 mail = Mail(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'imdata.db')
@@ -82,11 +83,13 @@ class User(db.Model, UserMixin):
      
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)    
-        
+
+#function to enerate confirmation token
 def generate_confirmation_token(email):
     serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
     return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
 
+#function to confirm token
 def confirm_token(token, expiration=3600):
     serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
     try:
@@ -98,6 +101,16 @@ def confirm_token(token, expiration=3600):
     except:
         return False
     return email
+
+#function to send email
+def send_mail(to, subject, template):
+    msg = Message(
+        subject,
+        recipients = [to],
+        html = template,
+        sender = app.config['MAIL_DEFAULT_SENDER']
+    )
+    mail.send(msg)
 
 # Forms
 class SignupForm(FlaskForm):
@@ -248,7 +261,14 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+
         token = generate_confirmation_token(user.email)
+        confirm_url = url_for('user.confirm_email', confirm_url = confirm_url)
+        subject = "Please confirm your email"
+        send_email(user.email, subject, html)
+
+        login_user(user)
+
         flash('You have successfully signed up ', 'success')
         return redirect(url_for('login'))
     
