@@ -270,7 +270,7 @@ def signup():
         login_user(user)
 
         flash('A confirmation email has been sent via email', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('unconfirmed'))
     
     return render_template('signup.html', form=form)
 
@@ -302,7 +302,7 @@ def unconfirmed():
         return redirect(url_for('home'))
     flash('Please confirm your account!', 'warning')
     return render_template('unconfirmed.html')
-    
+
 
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
