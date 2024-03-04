@@ -209,8 +209,14 @@ def contact():
 
 @app.route('/hosting')
 @app.route('/hosting.html')
-def products():
+def hosting():
     return render_template('hosting.html')
+
+# View/Route to handle profile
+@app.route('/profile')
+@app.route('/profile.html')
+def profile():
+    return render_template('profile.html')
 
 @app.route('/support', methods=['GET', 'POST'])
 @app.route('/support.html')
