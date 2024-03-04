@@ -268,7 +268,8 @@ def confirm_email(token):
         user.confirmed_on = datetime.datetime.now()
         db.session.add(user)
         db.session.commit()
-        flash('')
+        flash('You have confirmed yoour account. Thanks!', 'success')
+    return redirect(url_for('home'))
 
     
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
