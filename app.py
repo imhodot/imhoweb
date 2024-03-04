@@ -213,8 +213,9 @@ def hosting():
     return render_template('hosting.html')
 
 # View/Route to handle profile
-@app.route('/profile')
-@app.route('/profile.html')
+@app.route('/profile',)
+@login_required
+@check_confirmed
 def profile():
     return render_template('profile.html')
 
@@ -269,7 +270,6 @@ def create_admin():
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
-@app.route('/signup.html')
 def signup():
     if current_user.is_authenticated:
         flash('You are already registered.', 'info')
