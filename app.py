@@ -331,7 +331,9 @@ def resend_email():
     confirm_url = url_for('confirm_email', token=token, _external=True)
     html = render_template('activate.html', confirm_url=confirm_email)
     subject = "Please confirm your email!"
-    send_email(current_user)
+    send_email(current_user.email, subject, html)
+    flash('A new confirmation has been sent.', 'success')
+    return redirect(url_for('unconfirmed'))
 
 
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
