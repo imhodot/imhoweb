@@ -323,6 +323,17 @@ def unconfirmed():
     return render_template('unconfirmed.html')
 
 
+# View/Routes to handle resend email confirmation
+@app.route('/resend')
+@login_required
+def resend_email():
+    token = generate_confirmation_token(current_user.email)
+    confirm_url = url_for('confirm_email', token=token, _external=True)
+    html = render_template('activate.html', confirm_url=confirm_email)
+    subject = "Please confirm your email!"
+    send_email(current_user)
+
+
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit(user_id):
