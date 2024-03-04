@@ -235,6 +235,7 @@ def create_admin():
     )
     db.session.commit()
 
+# View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
 @app.route('/signup.html')
 def signup():
@@ -253,6 +254,7 @@ def signup():
     
     return render_template('signup.html', form=form)
 
+# View/Route to handle email confirmation
 @app.route('/confirm/<token>')
 @login_required
 def confirm_email(token):
