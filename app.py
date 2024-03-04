@@ -77,21 +77,28 @@ class User(db.Model, UserMixin):
     last_logged_in = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     confirmed = db.Column(db.Boolean, default=False)
 
-    def __init__(self, user_name, email, password_hash, fname, bio, confirmed, paid=False, admin=False, confirmed_on=None):
-        self.username = username
-        self.email = email
-        self.created_at = datetime.datetime.now()
-        self.last_logged_in = datetime.datetime.now()
-        self.admin = admin
-        self.confirmed = confirmed
-        self.confirmed_on = confirmed_on
-
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password)
      
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)    
         
+def generate_confirmation_token(email):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
+
+def confirm_token(token, expiration=3600):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        email = serializer.loads(
+            token,
+            salt=app.config['SECURITY_PASSWORD_SALT'],
+            max_age=expiration
+        )
+    except:
+        return False
+    return email
+
 # Forms
 class SignupForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
@@ -240,10 +247,17 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        token = generate_confirmation_token(user.email)
         flash('You have successfully signed up ', 'success')
         return redirect(url_for('login'))
     
     return render_template('signup.html', form=form)
+
+@app.route('/confirm/<token>')
+@login_required
+def confirm_email(token):
+    try:
+        
     
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
