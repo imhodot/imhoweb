@@ -257,7 +257,11 @@ def signup():
 @login_required
 def confirm_email(token):
     try:
-        
+        email = confirm_token(token)
+    except:
+        flash('The confirmation link is invalid or as expired.','danger')
+    user = User.query.filter_by(email=)
+
     
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
