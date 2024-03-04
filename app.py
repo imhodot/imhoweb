@@ -18,6 +18,7 @@ from flask_mail import Mail, Message
 from dotenv import load_dotenv
 from flask_bcrypt import Bcrypt
 import click 
+from functools import wraps
 
 import http.client, ssl
 
@@ -111,6 +112,18 @@ def send_mail(to, subject, template):
         sender = app.config['MAIL_DEFAULT_SENDER']
     )
     mail.send(msg)
+
+# function to create a decorator
+def check_confirmed(func):
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        if current_user.confirmed is False:
+            flash('Please confirm your account!', 'warning')
+            return redirect(url_for('user.confirmed'))
+        return func(*args, **kwargs)
+
+    return decorated_function
+
 
 # Forms
 class SignupForm(FlaskForm):
