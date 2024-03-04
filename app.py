@@ -260,7 +260,15 @@ def confirm_email(token):
         email = confirm_token(token)
     except:
         flash('The confirmation link is invalid or as expired.','danger')
-    user = User.query.filter_by(email=)
+    user = User.query.filter_by(email=email).first_or_404()
+    if user.confirmed:
+        flash('Account already confirmed. Please login.', 'success')
+    else:
+        user.confirmed = True
+        user.confirmed_on = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
+        flash('')
 
     
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
