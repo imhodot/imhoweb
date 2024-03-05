@@ -124,6 +124,12 @@ def check_confirmed(func):
 
     return decorated_function
 
+def setUp(self):
+    db.create_all()
+    user = User(username="ad.min", fname="admin", email="ad@min.com", password="admin_user", confirmed=False)
+    db.session.add(user)
+    db.session.commit()
+
 
 # Forms
 class SignupForm(FlaskForm):
