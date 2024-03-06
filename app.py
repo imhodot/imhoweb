@@ -225,6 +225,7 @@ def hosting():
 def profile():
     return render_template('profile.html')
 
+#View/Route to handle support
 @app.route('/support', methods=['GET', 'POST'])
 @app.route('/support.html')
 def support():
