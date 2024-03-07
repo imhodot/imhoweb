@@ -219,7 +219,7 @@ def hosting():
     return render_template('hosting.html')
 
 # View/Route to handle profile
-@app.route('/profile',)
+@app.route('/profile')
 @login_required
 @check_confirmed
 def profile():
