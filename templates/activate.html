@@ -1,11 +1,23 @@
-<div>
-    <p>
-        Welcome to IMHOweb! Thanks for signing up. Please follow this link to activate your account:
-    </p>
-    <p><a href="{{ confirm_url }}">{{ confirm_url }}</a></p>
-    <p>If you didn't request this, please ignore this email.</p>
-    <p>
-        Best Regards!<br>
-         From IMHOweb
-    </p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation</title>
+</head>
+<body>
+    <h2>Email Confirmation</h2>
+    <div>
+        <p>
+            Hello {{ user.fname }}, welcome to IMHOweb! Thanks for signing up. Please follow this link to activate your account:
+        </p>
+        <p><a href="{{ confirm_url }}">{{ confirm_url }}</a></p>
+        <p>If you didn't request this, please ignore this email.</p>
+        <p>
+            Best Regards!<br>
+             From IMHOweb
+        </p>
+    </div>
+    
+</body>
+</html>
