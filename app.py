@@ -104,7 +104,7 @@ def confirm_token(token, expiration=3600):
     return email
 
 #function to send email
-def send_mail(to, subject, template):
+def send_email(to, subject, template):
     msg = Message(
         subject,
         recipients = [to],
