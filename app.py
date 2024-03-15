@@ -198,8 +198,8 @@ def privacy():
 def about():
     return render_template('about.html')
 
-@app.route('/dashboard')
-@app.route('/dashboard.html')
+@app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
