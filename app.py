@@ -289,8 +289,10 @@ def signup():
         db.session.commit()
 
         token = generate_confirmation_token(user.email)
-        confirm_url = url_for('user.confirm_email', confirm_url = confirm_url)
+        confirm_url = url_for('confirm_email', token=token, _external=True)
         subject = "Please confirm your email"
+        html = render_template('activate.html', confirm_url=confirm_url) 
+
         send_email(user.email, subject, html)
 
         login_user(user)

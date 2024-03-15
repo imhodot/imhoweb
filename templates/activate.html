@@ -8,9 +8,7 @@
 <body>
     <h2>Email Confirmation</h2>
     <div>
-        <p>
-            Hello {{ user.fname }}, welcome to IMHOweb! Thanks for signing up. Please follow this link to activate your account:
-        </p>
+        <p>Welcome to IMHOweb! Thanks for signing up. Please follow this link to activate your account:</p>
         <p><a href="{{ confirm_url }}">{{ confirm_url }}</a></p>
         <p>If you didn't request this, please ignore this email.</p>
         <p>
