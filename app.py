@@ -113,13 +113,24 @@ def send_email(to, subject, template):
     )
     mail.send(msg)
 
-# function to create a decorator
+# functions to create a decorator
 def check_confirmed(func):
     @wraps(func)
     def decorated_function(*args, **kwargs):
         if current_user.confirmed is False:
             flash('Please confirm your account!', 'warning')
-            return redirect(url_for('user.confirmed'))
+            return redirect(url_for('unconfirmed'))
+        return func(*args, **kwargs)
+
+    return decorated_function
+
+
+def logout_required(func):
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        if current_user.is_authenticated:
+            flash("You are already authenticated.", "info")
+            return redirect(url_for("home"))
         return func(*args, **kwargs)
 
     return decorated_function
@@ -268,12 +279,37 @@ def whois():
 def create_admin():
     #Creates the admin user,
     db.session.add(User(
+        username = "admin",
+        fname = "admin",
         email = "ad@min.com",
-        password = "admin",
+        password = "987654321",
         admin = True,
         confirmed_on = datetime.datetime.now())
     )
     db.session.commit()
+
+"""@app.cli.command("create_admin")
+def create_admin():
+    #Creates the admin user.
+    email = input("Enter email address: ")
+    password = getpass.getpass("Enter password: ")
+    confirm_password = getpass.getpass("Enter password again: ")
+    if password != confirm_password:
+        print("Passwords don't match")
+    else:
+        try:
+            user = User(
+                email=email,
+                password=password,
+                admin=True,
+                confirmed=True,
+                confirmed_on=datetime.datetime.now(),
+            )
+            db.session.add(user)
+            db.session.commit()
+            print(f"Admin with email {email} created successfully!")
+        except Exception:
+            print("Couldn't create admin user.")"""
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
