@@ -275,20 +275,20 @@ def whois():
 
     return render_template('whois.html', form=form)
 
-@app.cli.command()
+"""@app.cli.command()
 def create_admin():
     #Creates the admin user,
     db.session.add(User(
         username = "admin",
         fname = "admin",
         email = "ad@min.com",
-        password = "987654321",
+        password = "**********",
         admin = True,
         confirmed_on = datetime.datetime.now())
     )
-    db.session.commit()
+    db.session.commit()"""
 
-"""@app.cli.command("create_admin")
+@app.cli.command("create_admin")
 def create_admin():
     #Creates the admin user.
     email = input("Enter email address: ")
@@ -309,7 +309,7 @@ def create_admin():
             db.session.commit()
             print(f"Admin with email {email} created successfully!")
         except Exception:
-            print("Couldn't create admin user.")"""
+            print("Couldn't create admin user.")
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
