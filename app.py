@@ -142,7 +142,7 @@ def setUp(self):
     db.session.commit()
 
 
-# Forms
+# Forms-------------------------------------------------------------------------------------------------------------------------------
 class SignupForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
     fname = StringField('Name', validators=[DataRequired()])
@@ -178,7 +178,7 @@ class Support(FlaskForm):
     question = StringField(validators=[InputRequired()])
     submit = SubmitField('Submit')
 
-# Views/Routes
+# Views/Routes-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -313,6 +313,7 @@ def create_admin():
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
+@logout_required
 def signup():
     if current_user.is_authenticated:
         flash('You are already registered.', 'info')
@@ -443,7 +444,7 @@ def blog_post(idx):
     except IndexError:
         abort(404)
 
-# Error Handling
+# Error Handling------------------------------------------------------------------------------------------------------------------------
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
@@ -454,7 +455,7 @@ def internal_server_error(e):
     return render_template('500.html'), 500
 
 
-# Omittable
+# Omittable---------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
     app.cli()
