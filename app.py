@@ -341,7 +341,6 @@ def signup():
 
 # View/Route to handle email confirmation
 @app.route('/confirm/<token>')
-@login_required
 def confirm_email(token):
     try:
         email = confirm_token(token)
