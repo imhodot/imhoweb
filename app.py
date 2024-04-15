@@ -325,7 +325,6 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-        # Generate confirmation token
         token = generate_confirmation_token(user.email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
         subject = "Please confirm your email"
