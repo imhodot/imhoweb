@@ -68,9 +68,9 @@
           </div>
 
           <div class="form-floating mb-3">
-            {{ form.fname(class="form-control", id="floatingInput", placeholder="Name")}}
-            {{ form.fname.label(for="floatingInput") }}       
-              {% if form.fname.errors %}
+            {{ form.name(class="form-control", id="floatingInput", placeholder="Name")}}
+            {{ form.name.label(for="floatingInput") }}       
+              {% if form.name.errors %}
                 {% for error in form.fname.errors %}
                   <div class="alert alert-danger" role="alert">
                     {{ error }}
