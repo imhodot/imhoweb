@@ -85,6 +85,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)    
 
+"""
 #function to generate confirmation token
 def generate_confirmation_token(email):
     serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
@@ -102,6 +103,7 @@ def confirm_token(token, expiration=3600):
     except:
         return False
     return email
+
 
 #function to send email
 def send_email(to, subject, template):
@@ -140,7 +142,7 @@ def setUp(self):
     user = User(username="ad.min", name="admin", email="ad@min.com", password="admin_user", confirmed=False)
     db.session.add(user)
     db.session.commit()
-
+"""
 
 # Forms-------------------------------------------------------------------------------------------------------------------------------
 class SignupForm(FlaskForm):
@@ -232,7 +234,7 @@ def hosting():
 # View/Route to handle profile
 @app.route('/profile')
 @login_required
-@check_confirmed
+#@check_confirmed
 def profile():
     return render_template('profile.html')
 
@@ -309,11 +311,12 @@ def create_admin():
             db.session.commit()
             print(f"Admin with email {email} created successfully!")
         except Exception:
-            print("Couldn't create admin user.")"""
+            print("Couldn't create admin user.")
+"""
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
-@logout_required
+#@logout_required
 def signup():
     if current_user.is_authenticated:
         flash('You are already registered.', 'info')
@@ -325,6 +328,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
+    """
         token = generate_confirmation_token(user.email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
         subject = "Please confirm your email"
@@ -336,9 +340,12 @@ def signup():
 
         flash('A confirmation email has been sent via email', 'success')
         return redirect(url_for('unconfirmed'))
-    
-    return render_template('signup.html', form=form)
+    """
 
+    return render_template('signup.html', form=form)
+    
+
+"""
 # View/Route to handle email confirmation
 @app.route('/confirm/<token>')
 def confirm_email(token):
@@ -379,7 +386,7 @@ def resend_email():
     send_email(current_user.email, subject, html)
     flash('A new confirmation has been sent.', 'success')
     return redirect(url_for('unconfirmed'))
-
+"""
 
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
@@ -401,7 +408,7 @@ def edit(user_id):
         return redirect(url_for('home'))
         
     return render_template('edit.html', user=user)
-
+"""
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -414,6 +421,25 @@ def login():
             return redirect(url_for('home'))
         flash('Invalid email address or Password.')    
     return render_template('login.html', form=form)
+    """
+
+# View/Route to handle login---------------------------------------------------------
+@app.route('/login', methods=['GET', 'POST'])
+#@logout_required
+def login():
+    if current_user.is_authenticated:
+        flash('You are already logged in.', 'info')
+        return redirect('/home')
+    form = LoginForm(request.form)
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid email or password.', 'danger')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember.data)
+        return redirect(url_for('home'))
+    return render_template('login.html', form=form)
+
 
 @app.route('/logout')
 @login_required
