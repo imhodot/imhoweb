@@ -147,8 +147,8 @@ class SignupForm(FlaskForm):
     username = StringField(validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
     name = StringField(validators=[DataRequired()])
     email = StringField(validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=8), EqualTo('password', message='Passwords must match')])
+    password = PasswordField(validators=[DataRequired(), Length(min=8)])
+    confirm_password = PasswordField(validators=[DataRequired(), Length(min=8), EqualTo('password', message='Passwords must match')])
     subscribe = BooleanField('Subscribe to our newsletter')
     submit = SubmitField('Sign Up')
 
