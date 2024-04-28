@@ -71,7 +71,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(150))
-    fname = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
     bio = db.Column(db.Text)
     admin = db.Column(db.Boolean, nullable=False, default=False)
     created_at = db.Column(db.DateTime(), default = datetime.utcnow, index = True)
@@ -137,7 +137,7 @@ def logout_required(func):
 
 def setUp(self):
     db.create_all()
-    user = User(username="ad.min", fname="admin", email="ad@min.com", password="admin_user", confirmed=False)
+    user = User(username="ad.min", name="admin", email="ad@min.com", password="admin_user", confirmed=False)
     db.session.add(user)
     db.session.commit()
 
@@ -145,7 +145,7 @@ def setUp(self):
 # Forms-------------------------------------------------------------------------------------------------------------------------------
 class SignupForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
-    fname = StringField('Name', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email',validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=8), EqualTo('password', message='Passwords must match')])
@@ -275,18 +275,18 @@ def whois():
 
     return render_template('whois.html', form=form)
 
-"""@app.cli.command()
+@app.cli.command()
 def create_admin():
     #Creates the admin user,
     db.session.add(User(
         username = "admin",
-        fname = "admin",
+        name = "admin",
         email = "ad@min.com",
         password = "**********",
         admin = True,
         confirmed_on = datetime.datetime.now())
     )
-    db.session.commit()"""
+    db.session.commit()
 
 @app.cli.command("create_admin")
 def create_admin():
@@ -320,7 +320,7 @@ def signup():
         return redirect('/home')
     form = SignupForm(request.form)
     if form.validate_on_submit():
-        user = User(username=form.username.data, fname=form.fname.data, email=form.email.data, confirmed=False)
+        user = User(username=form.username.data, name=form.name.data, email=form.email.data, confirmed=False)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -388,7 +388,7 @@ def edit(user_id):
 
     if request.method == 'POST':
         email = request.form['email']
-        fname = request.form['name']
+        name = request.form['name']
         bio = request.form['bio']
 
         user.email = email
