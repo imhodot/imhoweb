@@ -144,9 +144,9 @@ def setUp(self):
 
 # Forms-------------------------------------------------------------------------------------------------------------------------------
 class SignupForm(FlaskForm):
-    username = StringField('Username',validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
-    name = StringField('Name', validators=[DataRequired()])
-    email = StringField('Email',validators=[DataRequired()])
+    username = StringField(validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
+    name = StringField(validators=[DataRequired()])
+    email = StringField(validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(min=8), EqualTo('password', message='Passwords must match')])
     subscribe = BooleanField('Subscribe to our newsletter')
@@ -165,7 +165,7 @@ class SignupForm(FlaskForm):
             raise ValidationError('Passwords must match!')
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[InputRequired()])
+    email = StringField(validators=[InputRequired()])
     password = PasswordField(validators=[InputRequired(), Length(min=8)])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log in')
