@@ -85,7 +85,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)    
 
-#function to enerate confirmation token
+#function to generate confirmation token
 def generate_confirmation_token(email):
     serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
     return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
@@ -113,7 +113,7 @@ def send_email(to, subject, template):
     )
     mail.send(msg)
 
-# functions to create a decorator
+
 def check_confirmed(func):
     @wraps(func)
     def decorated_function(*args, **kwargs):
@@ -275,7 +275,7 @@ def whois():
 
     return render_template('whois.html', form=form)
 
-@app.cli.command()
+"""@app.cli.command()
 def create_admin():
     #Creates the admin user,
     db.session.add(User(
@@ -309,7 +309,7 @@ def create_admin():
             db.session.commit()
             print(f"Admin with email {email} created successfully!")
         except Exception:
-            print("Couldn't create admin user.")
+            print("Couldn't create admin user.")"""
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
@@ -457,4 +457,4 @@ def internal_server_error(e):
 # Omittable---------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
-    app.cli()
+    """app.cli()"""
