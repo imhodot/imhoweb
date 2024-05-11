@@ -80,7 +80,7 @@ class User(db.Model, UserMixin):
     confirmed = db.Column(db.Boolean, default=False)
 
     def set_password(self, password):
-        self.password_hash = bcrypt.generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
      
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)    
@@ -256,7 +256,7 @@ def signup():
         user = User(username=form.username.data, name=form.name.data, email=form.email.data, confirmed=False)
         user.set_password(form.password.data)
         db.session.add(user)
-        db.session.commit()
+        db.session.commit()\
 
         """token = generate_confirmation_token(user.email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
@@ -292,7 +292,6 @@ def edit(user_id):
         
     return render_template('edit.html', user=user)
 
-"""
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -301,11 +300,12 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.check_password(form.password.data):
-            login_user(user, remember=form.remember.data)
+            login_user(user, form.remember.data)
             return redirect(url_for('home'))  
+        flash('Invalid username or password.')
     return render_template('login.html', form=form)
-"""
 
+"""
 # View/Route to handle login---------------------------------------------------------
 @app.route('/login', methods=['GET', 'POST'])
 #@logout_required
@@ -322,6 +322,7 @@ def login():
         login_user(user, remember=form.remember.data)
         return redirect(url_for('home'))
     return render_template('login.html', form=form)
+"""
 
 @app.route('/logout')
 @login_required

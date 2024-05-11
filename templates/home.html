@@ -4,6 +4,14 @@
   {% include "_navbar.html" %}
 {% endblock %}
 
+{% block style %} 
+  <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+{% endblock style %}
+
+{% block header %}
+  {% include "_header.html" %}
+{% endblock %}
+
 {% block content %}
 <header>
   <div class="px-3 py-2 text-bg-dark">
