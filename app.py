@@ -85,64 +85,6 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash,password)    
 
-"""
-#function to generate confirmation token
-def generate_confirmation_token(email):
-    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-    return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
-
-#function to confirm token
-def confirm_token(token, expiration=3600):
-    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-    try:
-        email = serializer.loads(
-            token,
-            salt=app.config['SECURITY_PASSWORD_SALT'],
-            max_age=expiration
-        )
-    except:
-        return False
-    return email
-
-
-#function to send email
-def send_email(to, subject, template):
-    msg = Message(
-        subject,
-        recipients = [to],
-        html = template,
-        sender = app.config['MAIL_DEFAULT_SENDER']
-    )
-    mail.send(msg)
-
-
-def check_confirmed(func):
-    @wraps(func)
-    def decorated_function(*args, **kwargs):
-        if current_user.confirmed is False:
-            flash('Please confirm your account!', 'warning')
-            return redirect(url_for('unconfirmed'))
-        return func(*args, **kwargs)
-
-    return decorated_function
-
-
-def logout_required(func):
-    @wraps(func)
-    def decorated_function(*args, **kwargs):
-        if current_user.is_authenticated:
-            flash("You are already authenticated.", "info")
-            return redirect(url_for("home"))
-        return func(*args, **kwargs)
-
-    return decorated_function
-
-def setUp(self):
-    db.create_all()
-    user = User(username="ad.min", name="admin", email="ad@min.com", password="admin_user", confirmed=False)
-    db.session.add(user)
-    db.session.commit()
-"""
 
 # Forms-------------------------------------------------------------------------------------------------------------------------------
 class SignupForm(FlaskForm):
@@ -277,19 +219,7 @@ def whois():
 
     return render_template('whois.html', form=form)
 
-"""@app.cli.command()
-def create_admin():
-    #Creates the admin user,
-    db.session.add(User(
-        username = "admin",
-        name = "admin",
-        email = "ad@min.com",
-        password = "**********",
-        admin = True,
-        confirmed_on = datetime.datetime.now())
-    )
-    db.session.commit()
-
+            
 @app.cli.command("create_admin")
 def create_admin():
     #Creates the admin user.
@@ -309,10 +239,10 @@ def create_admin():
             )
             db.session.add(user)
             db.session.commit()
-            print(f"Admin with email {email} created successfully!")
+            flash(f"Admin with email {email} created successfully!")
         except Exception:
-            print("Couldn't create admin user.")
-"""
+            flash("Couldn't create admin user.")
+
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
@@ -328,65 +258,18 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-    """
-        token = generate_confirmation_token(user.email)
+        """token = generate_confirmation_token(user.email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
         subject = "Please confirm your email"
-        html = render_template('activate.html', confirm_url=confirm_url) 
+        html = render_template('activate.html', confirm_url=confirm_url)
+        send_email(user.email, subject, html)"""
 
-        send_email(user.email, subject, html)
-
-        login_user(user)
-
-        flash('A confirmation email has been sent via email', 'success')
-        return redirect(url_for('unconfirmed'))
-    """
+        flash('You can now login.', 'info')
+        return redirect(url_for('login'))
 
     return render_template('signup.html', form=form)
     
 
-"""
-# View/Route to handle email confirmation
-@app.route('/confirm/<token>')
-def confirm_email(token):
-    try:
-        email = confirm_token(token)
-    except:
-        flash('The confirmation link is invalid or has expired.','danger')
-    user = User.query.filter_by(email=email).first_or_404()
-    if user.confirmed:
-        flash('Account already confirmed. Please login.', 'success')
-    else:
-        user.confirmed = True
-        user.confirmed_on = datetime.datetime.now()
-        db.session.add(user)
-        db.session.commit()
-        flash('You have confirmed your account. Thanks!', 'success')
-    return redirect(url_for('home'))
-
-
-# View/Route to handle unconfirmed account
-@app.route('/unconfirmed')
-@login_required
-def unconfirmed():
-    if current_user.confirmed:
-        return redirect(url_for('home'))
-    flash('Please confirm your account!', 'warning')
-    return render_template('unconfirmed.html')
-
-
-# View/Routes to handle resend email confirmation
-@app.route('/resend')
-@login_required
-def resend_email():
-    token = generate_confirmation_token(current_user.email)
-    confirm_url = url_for('confirm_email', token=token, _external=True)
-    html = render_template('activate.html', confirm_url=confirm_email)
-    subject = "Please confirm your email!"
-    send_email(current_user.email, subject, html)
-    flash('A new confirmation has been sent.', 'success')
-    return redirect(url_for('unconfirmed'))
-"""
 
 @app.route('/<int:user>/edit/', methods=['GET', 'POST'])
 @login_required
@@ -408,6 +291,7 @@ def edit(user_id):
         return redirect(url_for('home'))
         
     return render_template('edit.html', user=user)
+
 """
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -415,13 +299,12 @@ def login():
         return redirect('/home')    
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.check_password(form.password.data):
-            login_user(user)
-            return redirect(url_for('home'))
-        flash('Invalid email address or Password.')    
+            login_user(user, remember=form.remember.data)
+            return redirect(url_for('home'))  
     return render_template('login.html', form=form)
-    """
+"""
 
 # View/Route to handle login---------------------------------------------------------
 @app.route('/login', methods=['GET', 'POST'])
@@ -439,7 +322,6 @@ def login():
         login_user(user, remember=form.remember.data)
         return redirect(url_for('home'))
     return render_template('login.html', form=form)
-
 
 @app.route('/logout')
 @login_required
@@ -483,4 +365,3 @@ def internal_server_error(e):
 # Omittable---------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
-    """app.cli()"""
