@@ -280,7 +280,7 @@ def edit(user_id):
         bio = request.form['bio']
 
         user.email = email
-        user.fname = fname
+        user.username = username
         user.bio = bio
 
         db.session.add(user)
@@ -290,6 +290,7 @@ def edit(user_id):
         
     return render_template('edit.html', user=user)
 
+"""
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -302,7 +303,6 @@ def login():
             return redirect(url_for('home'))  
         flash('Invalid username or password.')
     return render_template('login.html', form=form)
-
 """
 # View/Route to handle login---------------------------------------------------------
 @app.route('/login', methods=['GET', 'POST'])
@@ -320,7 +320,7 @@ def login():
         login_user(user, remember=form.remember.data)
         return redirect(url_for('home'))
     return render_template('login.html', form=form)
-"""
+
 
 @app.route('/logout')
 @login_required
