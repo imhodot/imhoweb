@@ -16,7 +16,6 @@ from datetime import datetime
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, BadSignature
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
-from flask_bcrypt import Bcrypt
 import click 
 from functools import wraps
 
@@ -52,7 +51,6 @@ db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
 
-bcrypt = Bcrypt(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
