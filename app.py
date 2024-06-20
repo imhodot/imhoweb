@@ -25,7 +25,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
-# Load environment variables from .env file
+# Load environment variables from virtual environment file
 load_dotenv()
 
 # Mail Settings
