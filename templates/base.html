@@ -32,6 +32,7 @@
           <div class="container">
 
             <!-- ===== messages ====-->
+          {#
             {% with messages = get_finished_messages(with_categories=true) %}
             {% if messages %}
             <div class="row">
@@ -48,6 +49,7 @@
             </div>
             {% endif %}
             {% endwith %}
+          #}
 
             {% block content %} {% endblock %}
           </div>
@@ -64,10 +66,10 @@
     </div>
 
       <!-- Vendor JS Files -->
-  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-  <script src="{{ url_for('static', filename='assets/js/form-validation.js') }}"></script>
-    {% block js %}{% endblock %}
+    <script src="{{ url_for('static', filename='assets/js/form-validation.js') }}"></script>
+      {% block js %}{% endblock %}
 
   </body>
 </html>
