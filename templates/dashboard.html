@@ -85,7 +85,11 @@
     <div class="btn-group me-2"><input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search"><div>
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3 nav-link dropdown-toggle">{{ current_user.username }}</a>
+        <li><a class="nav-link px-3 nav-link dropdown-toggle">{{ current_user.username }}</a>
+          <ul>
+            <li><a href="/profil">Profile</a><li>
+          </ul>
+        </li>
       </div>
     </div>
   </div>
