@@ -360,7 +360,6 @@ def internal_server_error(e):
     # note that we set the 404 status explicitly
     return render_template('500.html'), 500
 
-
 # Omittable---------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
