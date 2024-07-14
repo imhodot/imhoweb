@@ -217,7 +217,7 @@ def whois():
 
     return render_template('whois.html', form=form)
 
-            
+"""
 @app.cli.command("create_admin")
 def create_admin():
     #Creates the admin user.
@@ -240,7 +240,7 @@ def create_admin():
             flash(f"Admin with email {email} created successfully!")
         except Exception:
             flash("Couldn't create admin user.")
-
+"""
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
@@ -254,13 +254,7 @@ def signup():
         user = User(username=form.username.data, name=form.name.data, email=form.email.data, confirmed=False)
         user.set_password(form.password.data)
         db.session.add(user)
-        db.session.commit()\
-
-        """token = generate_confirmation_token(user.email)
-        confirm_url = url_for('confirm_email', token=token, _external=True)
-        subject = "Please confirm your email"
-        html = render_template('activate.html', confirm_url=confirm_url)
-        send_email(user.email, subject, html)"""
+        db.session.commit()
 
         flash('You can now login.', 'info')
         return redirect(url_for('login'))
