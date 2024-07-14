@@ -120,7 +120,7 @@ class Support(FlaskForm):
     question = StringField(validators=[InputRequired()])
     submit = SubmitField('Submit')
 
-# Views/Routes-----------------------------------------------------------------------------------------------------------------------------------------------------------
+# Views/Routes------------------------------------------------------------------------------------------------------------
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
