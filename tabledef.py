@@ -14,4 +14,3 @@ db.session.add(u)
 db.session.commit()
 
 User.query.all()
-

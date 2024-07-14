@@ -280,7 +280,7 @@ def edit(user_id):
         bio = request.form['bio']
 
         user.email = email
-        user.username = username
+        user.name = name
         user.bio = bio
 
         db.session.add(user)
