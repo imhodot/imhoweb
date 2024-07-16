@@ -84,10 +84,16 @@
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group me-2"><input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search"><div>
     <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-        <a class="nav-link px-3 nav-link dropdown-toggle">{{ current_user.username }}</a>
+      <div class="nav-item dropdown text-nowrap">
+        <a class="nav-link px-3 nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ current_user.username }}</a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Logout</a></li>
+        </ul>
       </div>
     </div>
+
   </div>
 </header>
 
