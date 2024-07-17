@@ -88,12 +88,12 @@
         <a class="nav-link px-3 nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ current_user.username }}</a>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="/profile"><i data-feather="user"></i>Profile</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          <li><a class="dropdown-item" href="#"><i data-feather="shopping-cart"></i>Shopping Cart</a></li>
+          <li><a class="dropdown-item" href="#"><i data-feather="settings"></i>Settings</a></li>
+          <li><a class="dropdown-item" href="/logout"><i data-feather="log-out"></i>Logout</a></li>
         </ul>
       </div>
     </div>
-
   </div>
 </header>
 
@@ -185,8 +185,6 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Welcome, {{current_user.username}}</h1>
       </div>
-
-      <canvas class="my-4 w-100" id="myChart" width="900" height="200"></canvas>
     </main>
   </div>
 </div>
