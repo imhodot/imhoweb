@@ -284,7 +284,7 @@ def edit(user_id):
         
     return render_template('edit.html', user=user)
 
-"""
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -294,7 +294,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.check_password(form.password.data):
             login_user(user, form.remember.data)
-            return redirect(url_for('home'))  
+            return redirect(url_for('dashboard'))  
         flash('Invalid username or password.')
     return render_template('login.html', form=form)
 """
@@ -314,6 +314,7 @@ def login():
         login_user(user, remember=form.remember.data)
         return redirect(url_for('dashboard'))
     return render_template('login.html', form=form)
+"""
 
 
 @app.route('/logout')
