@@ -298,25 +298,6 @@ def login():
             return redirect(url_for('dashboard'))  
         flash('Invalid username or password.')
     return render_template('login.html', form=form)
-"""
-# View/Route to handle login---------------------------------------------------------
-@app.route('/login', methods=['GET', 'POST'])
-#@logout_required
-def login():
-    if current_user.is_authenticated:
-        flash('You are already logged in.', 'info')
-        return redirect('/dashboard')
-    form = LoginForm(request.form)
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid email or password.', 'danger')
-            return redirect(url_for('login'))
-        login_user(user, remember=form.remember.data)
-        return redirect(url_for('dashboard'))
-    return render_template('login.html', form=form)
-"""
-
 
 @app.route('/logout')
 @login_required
