@@ -163,6 +163,7 @@ def shopping_cart():
 
 @app.route('/settings', methods=['GET', 'POST'])
 @app.route('/settings.html')
+@login_required
 def settings():
     return render_template('settings.html')
 
