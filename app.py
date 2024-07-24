@@ -161,10 +161,10 @@ def dashboard():
 def shopping_cart():
     return render_template('shopping_cart.html')
 
-@app.route('/shopping_cart', methods=['GET', 'POST'])
-@app.route('/shopping_cart.html')
-def shopping_cart():
-    return render_template('shopping_cart.html')
+@app.route('/settings', methods=['GET', 'POST'])
+@app.route('/settings.html')
+def settings():
+    return render_template('settings.html')
 
 @app.route('/domains', methods=['GET', 'POST'])
 @app.route('/domains.html')
