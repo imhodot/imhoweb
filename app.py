@@ -156,7 +156,17 @@ def about():
 def dashboard():
     return render_template('dashboard.html')
 
-@app.route('/domains')
+@app.route('/shopping_cart', methods=['GET', 'POST'])
+@app.route('/shopping_cart.html')
+def shopping_cart():
+    return render_template('shopping_cart.html')
+
+@app.route('/shopping_cart', methods=['GET', 'POST'])
+@app.route('/shopping_cart.html')
+def shopping_cart():
+    return render_template('shopping_cart.html')
+
+@app.route('/domains', methods=['GET', 'POST'])
 @app.route('/domains.html')
 def domains():
     return render_template('domains.html')
