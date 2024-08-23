@@ -37,12 +37,12 @@ app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_DEBUG'] = app.debug
-app.config['MAIL_SURPRESS_SEND'] = app.testing
+app.config['MAIL_SUPPRESS_SEND'] = app.testing
 
 mail = Mail(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'imdata.db')
-app.config['SECURITY_PASSWORD_SALT'] = config('SECUTIRY_PASSWORD_SALT', default='very-important')
+app.config['SECURITY_PASSWORD_SALT'] = config('SECURITY_PASSWORD_SALT', default='very-important')
 app.config['BCRYPT_LOG_ROUNDS'] = 13
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(32)
