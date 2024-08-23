@@ -5,15 +5,13 @@ from flask import Flask, render_template, url_for, request, redirect, session, a
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import sqlite3
-from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
 from decouple import config
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired, Serializer, BadSignature
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import click 
@@ -228,30 +226,6 @@ def whois():
 
     return render_template('whois.html', form=form)
 
-"""
-@app.cli.command("create_admin")
-def create_admin():
-    #Creates the admin user.
-    email = input("Enter email address: ")
-    password = getpass.getpass("Enter password: ")
-    confirm_password = getpass.getpass("Enter password again: ")
-    if password != confirm_password:
-        print("Passwords don't match")
-    else:
-        try:
-            user = User(
-                email=email,
-                password=password,
-                admin=True,
-                confirmed=True,
-                confirmed_on=datetime.datetime.now(),
-            )
-            db.session.add(user)
-            db.session.commit()
-            flash(f"Admin with email {email} created successfully!")
-        except Exception:
-            flash("Couldn't create admin user.")
-"""
 
 # View/Route to handle signup
 @app.route('/signup', methods=['GET', 'POST'])
@@ -260,7 +234,7 @@ def signup():
     if current_user.is_authenticated:
         flash('You are already registered.', 'info')
         return redirect('/home')
-    form = SignupForm(request.form)
+    form = SignupForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, name=form.name.data, email=form.email.data, confirmed=False)
         user.set_password(form.password.data)
@@ -272,9 +246,8 @@ def signup():
 
     return render_template('signup.html', form=form)
     
-
-
-@app.route('/<int:user>/edit/', methods=['GET', 'POST'])
+    
+@app.route('/<int:user_id>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit(user_id):
     user = User.query.get_or_404(user_id)
