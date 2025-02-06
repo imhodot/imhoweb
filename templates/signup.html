@@ -10,14 +10,14 @@
 
     <link rel="canonical" href="/signup">
     <!-- Favicons -->
-    <link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+    <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
   
     <!-- Vendor CSS Files -->
-    <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -28,7 +28,7 @@
     <div class="container d-flex align-items-center justify-content-between">
       <!-- <h1 class="logo"><a href="index.html">IMHOweb</a></h1>
       <-- Uncomment below if you prefer to use an image logo -->
-      <a href="index.html" class="logo"><img src="{{ url_for('static', filename='assets/img/logo-white.png') }}" alt="" class="img-fluid"></a>
+      <a href="index.html" class="logo"><img src="{{ url_for('static', filename='img/logo-white.png') }}" alt="" class="img-fluid"></a>
     </div>
   </header><!-- End Header -->
 
@@ -48,7 +48,7 @@
         </p>
       </div>
       <div class="col-md-10 mx-auto col-lg-6">
-        <img class="mb-4" src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="">
+        <img class="mb-4" src="{{ url_for('static', filename='img/logo-black.png') }}" alt="">
         <h1 class="h3 mb-3 fw-normal">Create an account</h1>
         {% for field, errors in form.errors.items() %}<p style="color: red;">{{ ', '.join(errors) }}</p>{% endfor %}
         <form class="p-4 p-md-5 border rounded-3 bg-light" action="" method="POST">
@@ -140,7 +140,7 @@
 
 
   <!-- Vendor JS Files -->
-  <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   <!-- Template Main JS File -->
 

@@ -11,14 +11,14 @@
     <link rel="canonical" href="/login/">
 
     <!-- Favicons -->
-  <link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Vendor CSS Files -->
-  <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='assets/css/login.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
 
   </head>
   <body class="text-center">
@@ -26,7 +26,7 @@
 <main class="form-signin w-100 m-auto">
   <form action="" method="POST">
       {{ form.hidden_tag() }}
-    <img class="mb-4" src="{{ url_for('static', filename='assets/img/logo-black.png') }}" alt="">
+    <img class="mb-4" src="{{ url_for('static', filename='img/logo-black.png') }}" alt="">
     <h1 class="h3 mb-3 fw-normal">Login</h1>
     {% for message in get_flashed_messages() %}<p style="color: red;">{{ message }}</p>{% endfor %}
     <div class="form-floating">

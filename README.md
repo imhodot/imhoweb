@@ -39,7 +39,7 @@ Pull the Git repo
 .. code-block:: text
 
     $ git clone imhoweb.git 
-    $ cd IMHOweb
+    $ cd imhoweb
     $ python3 -m venv venv
 
 

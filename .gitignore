@@ -1,17 +1,19 @@
+venv/
 .venv/
-imhoenv/
-
 *.pyc
 __pycache__/
 
 instance/
+migrations/
 
 .pytest_cache/
 .coverage
+.vscode
+.env
 htmlcov/
 
 dist/
 build/
 *.egg-info/
 *.db
-my_guide.txt
+*.log

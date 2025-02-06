@@ -1,88 +1,66 @@
 #!/bin/env python3
 # app.py
 import os
-from flask import Flask, render_template, url_for, request, redirect, session, abort, flash, jsonify, current_app
-from flask_sqlalchemy import SQLAlchemy
+from flask import (
+    Flask, 
+    render_template, url_for, request, redirect, 
+    session, abort, flash, jsonify, current_app
+)
 from flask_migrate import Migrate
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from flask_login import (
+    LoginManager, UserMixin, login_required, 
+    login_user, logout_user, current_user
+)
 from flask_wtf import FlaskForm
-from decouple import config
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
 from flask_mail import Mail, Message
-from dotenv import load_dotenv
 import click 
 from functools import wraps
-
 import http.client, ssl
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+## Local Imports
+# Import configs from config.py
+from config import Config
 
+# Import models from models.py
+from models import (
+    db,
+    User,
+)
+
+# Initialize Flask app and load configuration
 app = Flask(__name__)
+app.config.from_object(Config)  # from config.py
 
-# Load environment variables from virtual environment file
-load_dotenv()
-
-# Mail Settings
-app.config['MAIL_DEFAULT_SENDER'] = 'noreply@imhoweb.net'
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_DEBUG'] = app.debug
-app.config['MAIL_SUPPRESS_SEND'] = app.testing
-
-mail = Mail(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'imdata.db')
-app.config['SECURITY_PASSWORD_SALT'] = config('SECURITY_PASSWORD_SALT', default='very-important')
-app.config['BCRYPT_LOG_ROUNDS'] = 13
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.urandom(32)
-
-db = SQLAlchemy(app)
-
-migrate = Migrate(app, db)
+# Initialize Flask Extensions
+db.init_app(app)
+migrate = Migrate(app, db)  # Migrate
+mail = Mail(app)  # Mail
 
 
+# Initialize LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "login"
+login_manager.login_view = "login"  # Redirect to login if user is not authenticated
 login_manager.login_message_category = 'danger'
 
 
+# Load the user
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
-
-class User(db.Model, UserMixin):
-    __tablename__ = "users"
-
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    password_hash = db.Column(db.String(150))
-    name = db.Column(db.String(100), nullable=False)
-    bio = db.Column(db.Text)
-    admin = db.Column(db.Boolean, nullable=False, default=False)
-    created_at = db.Column(db.DateTime(), default = datetime.utcnow, index = True)
-    confirmed_on = db.Column(db.DateTime, nullable=True)
-    last_logged_in = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
-    confirmed = db.Column(db.Boolean, default=False)
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-     
-    def check_password(self, password):
-        return check_password_hash(self.password_hash,password)    
+    """Load a user by ID."""
+    return db.session.get(User, int(user_id))
 
 
-# Forms-------------------------------------------------------------------------------------------------------------------------------
+## Initialize the database (Create the database and tables)
+with app.app_context():
+    db.create_all()
+
+# Forms------------------------
 class SignupForm(FlaskForm):
     username = StringField(validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
     name = StringField(validators=[DataRequired()])
@@ -118,7 +96,7 @@ class Support(FlaskForm):
     question = StringField(validators=[InputRequired()])
     submit = SubmitField('Submit')
 
-# Views/Routes------------------------------------------------------------------------------------------------------------
+# Views/Routes-----------------------
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -180,14 +158,12 @@ def contact():
 def hosting():
     return render_template('hosting.html')
 
-# View/Route to handle profile
 @app.route('/profile')
 @login_required
 #@check_confirmed
 def profile():
     return render_template('profile.html')
 
-#View/Route to handle support
 @app.route('/support', methods=['GET', 'POST'])
 @app.route('/support.html')
 def support():
@@ -247,7 +223,7 @@ def signup():
     return render_template('signup.html', form=form)
     
     
-@app.route('/<int:user_id>/edit/', methods=['GET', 'POST'])
+@app.route('/u/<int:user_id>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit(user_id):
     user = User.query.get_or_404(user_id)
@@ -311,7 +287,7 @@ def blog_post(idx):
     except IndexError:
         abort(404)
 
-# Error Handling------------------------------------------------------------------------------------------------------------------------
+# Error Handling-------------------------------
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
@@ -321,6 +297,6 @@ def internal_server_error(e):
     # note that we set the 404 status explicitly
     return render_template('500.html'), 500
 
-# Omittable---------------------------------------------------------------------------------------------------------------------
+# Omittable-------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)

@@ -6,14 +6,14 @@
     <meta name="description" content="">
     <meta name="author" content="@amachefe, and imhoweb contributors">
     <meta name="generator" content="imhoweb 0.100.3">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} - IMHOweb</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
     <!-- Favicons -->
-    <link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+    <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
   
     <!-- Vendor CSS Files -->
-    <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   </head>
   <!-- Custom styles for this template -->
   {% block style %} {% endblock %}
@@ -60,9 +60,9 @@
     </div>
 
       <!-- Vendor JS Files -->
-    <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='assets/js/form-validation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
       {% block js %}{% endblock %}
 
   </body>
