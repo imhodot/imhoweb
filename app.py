@@ -27,10 +27,8 @@ import http.client, ssl
 from config import Config
 
 # Import models from models.py
-from models import (
-    db,
-    User,
-)
+from models import db, User
+from utils import generate_and_store_code, send_email, validate_verification
 
 # Initialize Flask app and load configuration
 app = Flask(__name__)
