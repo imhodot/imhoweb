@@ -107,6 +107,18 @@ def before_request():
 def index():
     return render_template('index.html')
 
+@app.route('/index1')
+def index1():
+    return render_template('index1.html')
+
+@app.route('/index3')
+def index3():
+    return render_template('index3.html')
+
+@app.route('/index4')
+def index4():
+    return render_template('index4.html')
+
 @app.route('/home')
 @login_required
 def home():

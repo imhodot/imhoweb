@@ -1,112 +1,220 @@
-{% extends "base.html" %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="@amachefe, and imhoweb contributors">
+    <meta name="generator" content="imhoweb 0.100.3">
+    <title>IMHOweb - Platform for Domain Name, Web and Email Hosting</title>
 
-{% block title %}IMHOweb - Hosting{% endblock %}
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
+    <!-- Favicons -->
+    <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+    <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  
+    <!-- Vendor CSS Files -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-{% block style %} 
-  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-{% endblock style %}
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check" viewBox="0 0 16 16">
+    <title>Check</title>
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </symbol>
+</svg>
 
-{% block header %}
-  {% include "_header.html" %}
-{% endblock %}
+<div class="container py-3">
+  <header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='img/logo-black.png') }}" alt="" class="img-fluid"></a>
+      <!--<a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4">IMHOweb</span>        
+      </a>-->
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto navbar navbar-expand-sm">
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item dropdown"><a class="me-3 py-2 text-dark text-decoration-none nav-link dropdown-toggle" href="/hosting" data-bs-toggle="dropdown" aria-expanded="false">Hosting</a>
+              <ul>
+                <li><a href="#">Shared Hosting</a></li>
+                <li><a href="#">VPS Hosting</a></li>
+                <li><a href="#">Dedicated Hosting</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="me-3 py-2 text-dark text-decoration-none nav-link dropdown-toggle" href="/domains" data-bs-toggle="dropdown" aria-expanded="false">Domains</a>
+              <ul>
+                <li><a href="#">Register Your Domain</a></li>
+                <li><a href="/whois">WHOIS Search</a></li>
+                <li><a href="">Become A Domain Reseller</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="me-3 py-2 text-dark text-decoration-none nav-link" href="/support">Support</a></li>
+            <li class="nav-item"><a class="me-3 py-2 text-dark text-decoration-none nav-link" href="#">Resources</a></li>
+            <li class="nav-item"><a href="/contact"><button type="button" class="btn btn-sm btn-outline-secondary" title="Contact Us"><strong>Contact</strong></button></a></li>
+            <li class="nav-item"><a href="/login"><button type="button" class="btn btn-sm btn-outline-secondary" title="Create an account"><strong>Login</strong></button></a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
 
-{% block navbar %} {% endblock %}
+  <!--startter main-->
 
-{% block content %}
-  <div class="position-relative overflow-hidden p-3 p-md-5 m-md- text-center bg-body-tertiary">
-    <div class="col-md-6 p-lg-5 mx-auto my-5">
-      <h1 class="display-3 fw-bold">Our Products</h1>
-      <h3 class="fw-normal text-muted mb-3">We offer variety of products that suit your need.</h3>
-      <div class="d-flex gap-3 justify-content-center lead fw-normal">
-        <a class="icon-link" href="#">
-          Learn more
-          <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-        </a>
-        <a class="icon-link" href="#">
-          Buy
-          <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-        </a>
+  <!-- main-->
+  <main>
+    <h1>Get started with IMHOweb</h1>
+    <p class="fs-5 col-md-8">Quickly and easily get started with IMHOweb,  Begin with a domain name. Join us and 1000 users and specifiers. What is the ideal domain name for your project?</p>
+   
+
+    <div class="mb-5">
+      <a href="/signup" class="btn btn-primary btn-lg px-4">Get started</a>
+    </div>
+
+    <hr class="col-3 col-md-2 mb-5">
+
+    <div class="row g-5">
+      <div class="col-md-6">
+        <h2>Starter projects</h2>
+        <p>Whether you want speed, simplicity, space, or super-power, we've got you covered. Launch your blog, showcase site, or online shop in one click.</p>
+        <ul class="icon-list ps-0">
+          <li class="d-flex align-items-start mb-1"><a href="#" rel="noopener" target="_blank">Options</a></li>
+          <!-- <li class="text-muted d-flex align-items-start mb-1">Bootstrap Parcel starter (coming soon!)</li> -->
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <h2>Guides</h2>
+        <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+        <ul class="icon-list ps-0">
+          <li class="d-flex align-items-start mb-1"><a href="../getting-started/introduction/">Bootstrap quick start guide</a></li>
+          <li class="d-flex align-items-start mb-1"><a href="../getting-started/webpack/">Bootstrap Webpack guide</a></li>
+          <li class="d-flex align-items-start mb-1"><a href="../getting-started/parcel/">Bootstrap Parcel guide</a></li>
+          <li class="d-flex align-items-start mb-1"><a href="../getting-started/vite/">Bootstrap Vite guide</a></li>
+          <li class="d-flex align-items-start mb-1"><a href="../getting-started/contribute/">Contributing to Bootstrap</a></li>
+        </ul>
+      </div>
+    </div>    
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h3 class="display-4 fw-normal">Choose Your Plan</h3>
+      <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="card-header py-3 text-bg-primary border-primary">Starter</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$2<small class="text-muted fw-light">/mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>10 account included</li>
+              <li>2 GB of storage</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <a href="/checkout"><button type="button" class="w-100 btn btn-lg btn-primary">Select</button></a>          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">        
+            <h4 class="my-0 fw-normal">Pro</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$10<small class="text-muted fw-light">/mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>20 account included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <a href="/checkout"><button type="button" class="w-100 btn btn-lg btn-primary">Select</button></a>          
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="card-header py-3 text-bg-primary border-primary">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Unlimited account included</li>
+              <li>50 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <a href="/checkout"><button type="button" class="w-100 btn btn-lg btn-primary">Select</button></a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-  </div>
 
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 py-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading.</p>
-      </div>
-      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-    </div>
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading.</p>
-      </div>
-      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-    </div>
-  </div>
+    <h2 class="display-6 text-center mb-4">Compare plans</h2>
 
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading.</p>
-      </div>
-      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-    </div>
-    <div class="text-bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 py-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading.</p>
-      </div>
-      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-    </div>
-  </div>
+    <div class="table-responsive">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 34%;"></th>
+            <th style="width: 22%;">Starter</th>
+            <th style="width: 22%;">Pro</th>
+            <th style="width: 22%;">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="text-start">Public</th>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Private</th>
+            <td></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+          </tr>
+        </tbody>
 
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading.</p>
-      </div>
-      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+        <tbody>
+          <tr>
+            <th scope="row" class="text-start">Permissions</th>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Sharing</th>
+            <td></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Unlimited members</th>
+            <td></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Extra security</th>
+            <td></td>
+            <td></td>
+            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 py-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading.</p>
-      </div>
-      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-    </div>
-  </div>
-
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading</p>
-      </div>
-      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-    </div>
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 py-3">
-        <h2 class="display-5">Another headline</h2>
-        <p class="lead">And an even wittier subheading</p>
-      </div>
-      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-    </div>
-  </div>
-{% endblock %}
-
-{% block footer %}  
+  </main>
+{% block footer %}    
   {% include "_footer.html" %}
 {% endblock footer %}
-
-
-  <!-- Vendor JS Files -->
-  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-  <script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
+</div>
+  </body>
+</html>
