@@ -12,7 +12,6 @@ from flask_login import (
     LoginManager, UserMixin, login_required, 
     login_user, logout_user, current_user
 )
-from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
 from flask_mail import Mail, Message
 import click 
@@ -65,7 +64,6 @@ def before_request():
 
 @app.route('/')
 @app.route('/index')
-@app.route('/index.html')
 def index():
     return render_template('index.html')
 
@@ -95,7 +93,6 @@ def privacy():
     return render_template('privacy.html')
 
 @app.route('/about')
-@app.route('/about.html')
 def about():
     return render_template('about.html')
 
@@ -105,28 +102,23 @@ def dashboard():
     return render_template('dashboard.html')
 
 @app.route('/shopping_cart', methods=['GET', 'POST'])
-@app.route('/shopping_cart.html')
 def shopping_cart():
     return render_template('shopping_cart.html')
 
 @app.route('/settings', methods=['GET', 'POST'])
-@app.route('/settings.html')
 @login_required
 def settings():
     return render_template('settings.html')
 
 @app.route('/domains', methods=['GET', 'POST'])
-@app.route('/domains.html')
 def domains():
     return render_template('domains.html')
 
 @app.route('/contact')
-@app.route('/contact.html')
 def contact():
     return render_template('contact.html')
 
 @app.route('/hosting')
-@app.route('/hosting.html')
 def hosting():
     return render_template('hosting.html')
 
@@ -137,7 +129,6 @@ def profile():
     return render_template('profile.html')
 
 @app.route('/support', methods=['GET', 'POST'])
-@app.route('/support.html')
 def support():
     form = Support()
     if form.validate_on_submit():
@@ -146,7 +137,6 @@ def support():
     return render_template('support.html', form=form)
 
 @app.route('/checkout')
-@app.route('/checkout.html')
 def checkout():
     return render_template('checkout.html')
 

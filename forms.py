@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 
+from models import User
 # Forms------------------------
 class SignupForm(FlaskForm):
     username = StringField(validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
