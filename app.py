@@ -2,8 +2,7 @@
 # app.py
 import os
 from flask import (
-    Flask, 
-    render_template, url_for, request, redirect, 
+    Flask, render_template, url_for, request, redirect, 
     session, abort, flash, jsonify, current_app
 )
 from flask_migrate import Migrate
@@ -13,8 +12,6 @@ from flask_login import (
     LoginManager, UserMixin, login_required, 
     login_user, logout_user, current_user
 )
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, EqualTo, Email, Regexp
 from datetime import datetime
 from flask_mail import Mail, Message
@@ -28,6 +25,7 @@ from config import Config
 
 # Import models from models.py
 from models import db, User
+from forms import SignupForm, LoginForm, WhoisForm, Support
 from utils import generate_and_store_code, send_email, validate_verification
 
 # Initialize Flask app and load configuration
@@ -57,42 +55,6 @@ def load_user(user_id):
 ## Initialize the database (Create the database and tables)
 with app.app_context():
     db.create_all()
-
-# Forms------------------------
-class SignupForm(FlaskForm):
-    username = StringField(validators=[DataRequired(), Length(min=3, max=60), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, numbers, dots or underscores')])
-    name = StringField(validators=[DataRequired()])
-    email = StringField(validators=[DataRequired()])
-    password = PasswordField(validators=[DataRequired(), Length(min=8)])
-    confirm_password = PasswordField(validators=[DataRequired(), Length(min=8), EqualTo('password', message='Passwords must match')])
-    subscribe = BooleanField('Subscribe to our newsletter')
-    submit = SubmitField('Sign Up')
-
-    def validate_email(self, field):
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.')
-
-    def validate_username(self, field):
-        if User.query.filter_by(username=field.data).first():
-            raise ValidationError('Username already in use.')
-
-    def validate_password(self,field):
-        if self.password.data != self.confirm_password.data:
-            raise ValidationError('Passwords must match!')
-
-class LoginForm(FlaskForm):
-    email = StringField(validators=[InputRequired()])
-    password = PasswordField(validators=[InputRequired(), Length(min=8)])
-    remember = BooleanField('Remember Me')
-    submit = SubmitField('Log in')
-
-class WhoisForm(FlaskForm):
-    domain = StringField(validators=[InputRequired()])
-    submit = SubmitField('Search')
-
-class Support(FlaskForm):
-    question = StringField(validators=[InputRequired()])
-    submit = SubmitField('Submit')
 
 # Views/Routes-----------------------
 @app.before_request
