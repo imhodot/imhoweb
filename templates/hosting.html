@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="@amachefe, and imhoweb contributors">
+    <meta name="author" content="@amaamb, and imhoweb contributors">
     <meta name="generator" content="imhoweb 0.100.3">
     <title>IMHOweb - Platform for Domain Name, Web and Email Hosting</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
     <!-- Favicons -->
     <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
     <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
@@ -38,13 +37,7 @@
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto navbar navbar-expand-sm">
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            <li class="nav-item dropdown"><a class="me-3 py-2 text-dark text-decoration-none nav-link dropdown-toggle" href="/hosting" data-bs-toggle="dropdown" aria-expanded="false">Hosting</a>
-              <ul>
-                <li><a href="#">Shared Hosting</a></li>
-                <li><a href="#">VPS Hosting</a></li>
-                <li><a href="#">Dedicated Hosting</a></li>
-              </ul>
-            </li>
+            <li class="nav-item"><a class="me-3 py-2 text-dark text-decoration-none nav-link" href="#hosting">Hosting</a></li>
             <li class="nav-item dropdown"><a class="me-3 py-2 text-dark text-decoration-none nav-link dropdown-toggle" href="/domains" data-bs-toggle="dropdown" aria-expanded="false">Domains</a>
               <ul>
                 <li><a href="#">Register Your Domain</a></li>
@@ -68,79 +61,73 @@
   <!-- main-->
   <main>
     <h1>Get started with IMHOweb</h1>
-    <p class="fs-5 col-md-8">Quickly and easily get started with IMHOweb,  Begin with a domain name. Join us and 1000 users and specifiers. What is the ideal domain name for your project?</p>
-   
-
+    <p class="fs-5 col-md-8">Easily launch your online presence with IMHOweb. Secure your domain name and join thousands of users building their projects. What’s the perfect domain for you?</p>
     <div class="mb-5">
-      <a href="/signup" class="btn btn-primary btn-lg px-4">Get started</a>
+      <a href="/signup" class="btn btn-primary btn-lg px-4">Get Started</a>
     </div>
-
     <hr class="col-3 col-md-2 mb-5">
 
     <div class="row g-5">
       <div class="col-md-6">
-        <h2>Starter projects</h2>
-        <p>Whether you want speed, simplicity, space, or super-power, we've got you covered. Launch your blog, showcase site, or online shop in one click.</p>
+        <h2>Starter Projects</h2>
+        <p>Whether you need speed, simplicity, or power, we’ve got you covered. Launch your blog, portfolio, or online store with just one click.</p>
         <ul class="icon-list ps-0">
-          <li class="d-flex align-items-start mb-1"><a href="#" rel="noopener" target="_blank">Options</a></li>
-          <!-- <li class="text-muted d-flex align-items-start mb-1">Bootstrap Parcel starter (coming soon!)</li> -->
+          <li class="d-flex align-items-start mb-1"><a href="#" rel="noopener">Explore Options</a></li>
         </ul>
       </div>
-
       <div class="col-md-6">
         <h2>Guides</h2>
-        <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+        <p>Explore in-depth guides and documentation on IMHOweb, cloud, and web hosting to optimize your online presence.</p>
         <ul class="icon-list ps-0">
-          <li class="d-flex align-items-start mb-1"><a href="../getting-started/introduction/">Bootstrap quick start guide</a></li>
-          <li class="d-flex align-items-start mb-1"><a href="../getting-started/webpack/">Bootstrap Webpack guide</a></li>
-          <li class="d-flex align-items-start mb-1"><a href="../getting-started/parcel/">Bootstrap Parcel guide</a></li>
-          <li class="d-flex align-items-start mb-1"><a href="../getting-started/vite/">Bootstrap Vite guide</a></li>
-          <li class="d-flex align-items-start mb-1"><a href="../getting-started/contribute/">Contributing to Bootstrap</a></li>
+          <li class="d-flex align-items-start mb-1"><a href="/guides/getting-started/">IMHOweb Quick Start Guide</a></li>
+          <li class="d-flex align-items-start mb-1"><a href="/guides/cloud-hosting/">Cloud Hosting Guide</a></li>
+          <li class="d-flex align-items-start mb-1"><a href="/guides/domain-registration/">Domain Registration Guide</a></li>
         </ul>
       </div>
     </div>    
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="hosting">
       <h3 class="display-4 fw-normal">Choose Your Plan</h3>
-      <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+      <p class="fs-5 text-muted">IMHOweb’s cloud and web hosting solutions are flexible, reliable, and built to scale with your business.</p>
     </div>
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="card-header py-3 text-bg-primary border-primary">Starter</h4>
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Starter</h4>
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">$2<small class="text-muted fw-light">/mo</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>10 account included</li>
+              <li>Includes 10 accounts</li>
               <li>2 GB of storage</li>
               <li>Email support</li>
               <li>Help center access</li>
             </ul>
-            <a href="/checkout"><button type="button" class="w-100 btn btn-lg btn-primary">Select</button></a>          </div>
+            <a href="/checkout" class="btn btn-lg btn-primary w-100">Select</a>
+          </div>
         </div>
       </div>
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm border-primary">
-          <div class="card-header py-3 text-bg-primary border-primary">        
+          <div class="card-header py-3 text-bg-primary border-primary">
             <h4 class="my-0 fw-normal">Pro</h4>
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">$10<small class="text-muted fw-light">/mo</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>20 account included</li>
+              <li>Includes 20 accounts</li>
               <li>10 GB of storage</li>
               <li>Priority email support</li>
               <li>Help center access</li>
             </ul>
-            <a href="/checkout"><button type="button" class="w-100 btn btn-lg btn-primary">Select</button></a>          
+            <a href="/checkout" class="btn btn-lg btn-primary w-100">Select</a>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="card-header py-3 text-bg-primary border-primary">Enterprise</h4>
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Enterprise</h4>
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
@@ -150,10 +137,10 @@
               <li>Phone and email support</li>
               <li>Help center access</li>
             </ul>
-            <a href="/checkout"><button type="button" class="w-100 btn btn-lg btn-primary">Select</button></a>
+            <a href="/checkout" class="btn btn-lg btn-primary w-100">Select</a>
           </div>
         </div>
-      </div>
+      </div>      
     </div>
 
     <h2 class="display-6 text-center mb-4">Compare plans</h2>
