@@ -5,32 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMHOweb - Where Stories and Technology Connect</title>
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
     <style>
         body {
             font-family: 'MuseoModerno', sans-serif;
-            background-color: #FFCF31;
+            background-color: #F8F8F8;
             color: #6D285F;
         }
         .navbar {
             background-color: #6D285F;
         }
         .navbar-brand, .nav-link {
-            color: #FFCF31 !important;
+            color: #F4C95D !important;
         }
         .hero-section {
             text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(to right, #6D285F, #9E4770);
-            color: #FFCF31;
+            padding: 100px 20px;
+            background: linear-gradient(to right, #6D285F, #9E4770, #BF678B);
+            color: white;
         }
         .btn-custom {
-            background-color: #FFCF31;
+            background-color: #F4C95D;
             color: #6D285F;
             font-weight: bold;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #e0b04d;
         }
         .section {
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
+        }
+        .bg-light {
+            background-color: #fff !important;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+        }
+        .footer {
+            background-color: #6D285F;
+            color: #F4C95D;
+            padding: 20px;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -60,46 +77,58 @@
         <div class="container">
             <h1>Where Stories and Technology Connect</h1>
             <p>Explore our platforms: Films, Media, Stories, and AI Recommendations.</p>
-            <a href="#" class="btn btn-custom btn-lg">Get Started</a>
+            <a href="#platforms" class="btn btn-custom btn-lg">Get Started</a>
         </div>
     </header>
 
     <!-- Platforms Section -->
-    <section class="section">
+    <section id="platforms" class="section">
         <div class="container">
-            <h2>Our Platforms</h2>
+            <h2 class="mb-4">Our Platforms</h2>
             <div class="row">
                 <div class="col-md-3">
-                    <h3>IMHO Films</h3>
-                    <p>Streaming authentic African stories.</p>
+                    <div class="bg-light">
+                        <h3>IMHO Films</h3>
+                        <p>Streaming authentic African stories.</p>
+                        <a href="#" class="btn btn-custom">Explore Films</a>
+                    </div>
                 </div>
                 <div class="col-md-3">
-                    <h3>IMHO Media</h3>
-                    <p>Real-time news and entertainment.</p>
+                    <div class="bg-light">
+                        <h3>IMHO Media</h3>
+                        <p>Real-time news and entertainment.</p>
+                        <a href="#" class="btn btn-custom">Explore Media</a>
+                    </div>
                 </div>
                 <div class="col-md-3">
-                    <h3>IMHO Stories</h3>
-                    <p>Interactive storytelling experiences.</p>
+                    <div class="bg-light">
+                        <h3>IMHO Stories</h3>
+                        <p>Interactive storytelling experiences.</p>
+                        <a href="https://conva.net" class="btn btn-custom" target="_blank">Visit IMHO Stories</a>
+                    </div>
                 </div>
                 <div class="col-md-3">
-                    <h3>IMHO Recommend</h3>
-                    <p>AI-powered personalized recommendations.</p>
+                    <div class="bg-light">
+                        <h3>IMHO Recommend</h3>
+                        <p>AI-powered personalized recommendations.</p>
+                        <a href="#" class="btn btn-custom">Explore Recommend</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Hosting Section -->
-    <section class="section bg-light">
+    <section id="hosting" class="section">
         <div class="container">
             <h2>Hosting & Cloud Services</h2>
             <p>Reliable domain registration, web hosting, and cloud VPS solutions.</p>
-            <a href="#" class="btn btn-custom">Learn More</a>
+            <a href="https://imhocloud.com" class="btn btn-custom" target="_blank">Visit IMHO Cloud</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="text-center py-4" style="background-color: #6D285F; color: #FFCF31;">
+    <footer class="footer text-center">
         <p>© 2025 IMHOweb. All Rights Reserved.</p>
     </footer>
 

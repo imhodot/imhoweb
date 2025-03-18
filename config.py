@@ -11,11 +11,11 @@ FLASK_ENV = config('FLASK_ENV', default='production')
 class Config:
     """Base configuration class with default settings."""
     # General application settings
-    BASE_VERIFICATION_URL = config('BASE_VERIFICATION_URL', default='http://localhost:5000')
+    BASE_VERIFICATION_URL = config('BASE_VERIFICATION_URL', default='http://localhost:5005')
 
     SECRET_KEY = os.urandom(32)
-    GEMINI_API_KEY = config('GEMINI_API_KEY', default='abcdefghijkl123')
-    DEEPSK_API_KEY = config('DEEPSK_API_KEY', default='abcdefghijkl123')
+    GEMINI_KEY = config('GEMINI_KEY', default='abcdefghijkl123')
+    DEEPSEEK_KEY = config('DEEPSEEK_KEY', default='abcdefghijkl123')
 
     XRapidAPIKey = config('XRapidAPIKey')
     XRapidAPIHost = config('XRapidAPIHost')
@@ -46,7 +46,6 @@ class Config:
     # File upload settings
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
     USER_FOLDER = os.path.join(UPLOAD_FOLDER, 'users')  # User profile uploads
-    BOOK_FOLDER = os.path.join(UPLOAD_FOLDER, 'books')  # Book-related uploads
     MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5 MB max file size
     ALLOWED_EXTENSIONS = {'txt', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -57,7 +56,7 @@ class Config:
     ERROR_LOG = os.path.join(LOG_DIR, 'error.log')
 
     # Ensure the all folders exist
-    folders = [UPLOAD_FOLDER, USER_FOLDER, BOOK_FOLDER, LOG_DIR]
+    folders = [UPLOAD_FOLDER, USER_FOLDER, LOG_DIR]
     for folder in folders:
         os.makedirs(folder, exist_ok=True)
 

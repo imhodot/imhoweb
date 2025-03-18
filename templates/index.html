@@ -125,18 +125,10 @@
       <div class="row">
         <div class="col-md-4">
           <div class="icon-box">
-            <i class="bi bi-film"></i> <!-- Placeholder icon, replace with custom -->
-          </div>
-          <h4>IMHO Films</h4>
-          <p>Stream the latest films and exclusive content</p>
-          <a href="#" class="btn btn-primary">Explore Films</a>
-        </div>
-        <div class="col-md-4">
-          <div class="icon-box">
             <i class="bi bi-newspaper"></i> <!-- Placeholder icon, replace with custom -->
           </div>
           <h4>IMHO Media</h4>
-          <p>Stay updated with live news and entertainment</p>
+          <p>Stream films, exclusive content and entertainment</p>
           <a href="#" class="btn btn-primary">Explore Media</a>
         </div>
         <div class="col-md-4">
@@ -145,10 +137,34 @@
           </div>
           <h4>IMHO Stories</h4>
           <p>Interactive stories that captivate your imagination</p>
-          <a href="#" class="btn btn-primary">Explore Stories</a>
+          <a href="conva.net" class="btn btn-primary">Explore Stories</a>
         </div>
+        <div class="col-md-4">
+          <div class="icon-box">
+            <i class="bi bi-book"></i> <!-- Placeholder icon, replace with custom -->
+          </div>
+          <h4>IMHO Recommend</h4>
+          <p>AI-driven personalized content recommendations.</p>
+          <a href="#" class="btn btn-primary">Explore</a>
+        </div>        
       </div>
     </div>
+  </section>
+
+    <!-- Hosting Section -->
+  <section id="hosting" class="section-content text-center">
+      <div class="container">
+          <h2>Hosting & Cloud Services</h2>
+          <p>Reliable domain registration, web hosting, and cloud VPS solutions.</p>
+          <a href="https://imhocloud.com" class="btn btn-custom" target="_blank">Visit IMHO Cloud</a>
+      </div>
+  </section>
+  
+    <!-- Contact Section -->
+  <section id="contact" class="container my-5 text-center">
+      <h2>Get in Touch</h2>
+      <p>Have questions or want to collaborate? Reach out to us.</p>
+      <a href="/contact" class="btn btn-primary">Contact Us</a>
   </section>
 
   <!-- Footer -->
@@ -158,7 +174,7 @@
 
   <!-- Bootstrap JS and Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 </html>

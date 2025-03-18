@@ -71,13 +71,9 @@ def index():
 def index1():
     return render_template('index1.html')
 
-@app.route('/index3')
-def index3():
-    return render_template('index3.html')
-
-@app.route('/index4')
-def index4():
-    return render_template('index4.html')
+@app.route('/index2')
+def index2():
+    return render_template('index2.html')
 
 @app.route('/home')
 @login_required
@@ -118,9 +114,9 @@ def domains():
 def contact():
     return render_template('contact.html')
 
-@app.route('/hosting')
+@app.route('/cloud')
 def hosting():
-    return render_template('hosting.html')
+    return render_template('cloud.html')
 
 @app.route('/profile')
 @login_required
@@ -261,4 +257,4 @@ def internal_server_error(e):
 
 # Omittable-------------------------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5005)
